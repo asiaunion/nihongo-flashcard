@@ -230,10 +230,14 @@ class FlashcardApp {
     this.voices = [];
     const loadVoices = () => {
       this.voices = window.speechSynthesis.getVoices();
+      console.log(`Loaded ${this.voices.length} voices.`);
     };
     if ('speechSynthesis' in window) {
       loadVoices();
       window.speechSynthesis.onvoiceschanged = loadVoices;
+      // Chrome/Safari fallback: sometimes onvoiceschanged doesn't fire if voices are already cached
+      setTimeout(loadVoices, 500);
+      setTimeout(loadVoices, 1000);
     }
     
     window.addEventListener('hashchange', () => this.handleRoute());
@@ -261,32 +265,58 @@ class FlashcardApp {
   }
   
   playTTS(text) {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ja-JP';
-      utterance.rate = 0.85;
+    if (!('speechSynthesis' in window)) return;
+
+    // 1. Cancel previous speech
+    window.speechSynthesis.cancel();
+
+    // 2. Create utterance
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    
+    // 3. Tuning for natural feel: 
+    // Slightly faster than 0.85 to sound less robotic, 
+    // and slightly higher pitch for clarity/cheerfulness.
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
+    utterance.volume = 1.0;
+
+    // 4. Advanced Voice Selection Logic
+    if (this.voices && this.voices.length > 0) {
+      const jaVoices = this.voices.filter(v => v.lang.startsWith('ja'));
       
-      if (this.voices && this.voices.length > 0) {
-        const jaVoices = this.voices.filter(v => v.lang.includes('ja'));
-        // Find premium/natural voices available on iOS, macOS, Chrome
-        const preferredVoice = jaVoices.find(v => 
-          v.name.includes('Kyoko') || 
-          v.name.includes('Google 日本語') || 
-          v.name.includes('O-ren') ||
-          v.name.includes('Siri') ||
-          v.name.includes('Otoya')
-        );
+      if (jaVoices.length > 0) {
+        // Priority Score System
+        const getScore = (v) => {
+          let score = 0;
+          const name = v.name.toLowerCase();
+          
+          // MacOS/iOS Siri voices are top-tier natural
+          if (name.includes('siri')) score += 100;
+          // Google Cloud-based voices in Chrome are excellent
+          if (name.includes('google')) score += 90;
+          // "Enhanced" or "Premium" versions of system voices
+          if (name.includes('enhanced') || name.includes('premium')) score += 80;
+          // Specific high-quality voice names
+          if (name.includes('kyoko')) score += 50;
+          if (name.includes('otoya')) score += 40;
+          if (name.includes('o-ren') || name.includes('hattori')) score += 30;
+          
+          return score;
+        };
+
+        const sortedVoices = jaVoices.sort((a, b) => getScore(b) - getScore(a));
+        utterance.voice = sortedVoices[0];
         
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
-        } else if (jaVoices.length > 0) {
-          utterance.voice = jaVoices[0];
-        }
+        // Log for debugging/verification if needed
+        console.log(`Selected Voice: ${utterance.voice.name}`);
       }
-      
-      window.speechSynthesis.speak(utterance);
     }
+
+    // 5. Speak with a tiny delay to ensure cancel() finished cleanly on some browsers
+    setTimeout(() => {
+      window.speechSynthesis.speak(utterance);
+    }, 50);
   }
   
   handleRoute() {
@@ -402,6 +432,9 @@ class FlashcardApp {
             <div class="card-face card-back">
               <div class="word-reading">${wordHtml}</div>
               <div class="word-meaning">${card.meaningKo}</div>
+              <button class="speaker-btn" id="manual-tts-btn" title="다시 듣기">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              </button>
             </div>
           </div>
           ${!this.hasFlippedOnce ? '<div class="hint-text visible" id="hint-text">탭해서 뒤집어보세요!</div>' : ''}
@@ -439,7 +472,10 @@ class FlashcardApp {
       
       if (this.isFlipped) {
         const card = this.currentLesson.cards[this.currentCardIndex];
-        this.playTTS(card.wordReading);
+        // Natural pause before speaking when card is flipped (300ms)
+        setTimeout(() => {
+          if (this.isFlipped) this.playTTS(card.wordReading);
+        }, 300);
       }
       
       if (!this.hasFlippedOnce) {
@@ -466,6 +502,20 @@ class FlashcardApp {
         }
       }
     });
+
+    // Manual TTS button event
+    const manualBtn = document.getElementById('manual-tts-btn');
+    if (manualBtn) {
+      manualBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Don't flip the card back
+        const card = this.currentLesson.cards[this.currentCardIndex];
+        this.playTTS(card.wordReading);
+        
+        // Visual feedback
+        manualBtn.classList.add('playing');
+        setTimeout(() => manualBtn.classList.remove('playing'), 600);
+      });
+    }
     
     if (prevBtn) {
       prevBtn.addEventListener('click', () => this.navigateCard(-1));
