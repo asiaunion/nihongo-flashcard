@@ -424,7 +424,6 @@ class FlashcardApp {
             <a href="#lesson/${lesson.id}" class="lesson-card">
               ${isCompleted ? '<div class="completed-check">✓</div>' : ''}
               <div class="lesson-row">${displayRow}</div>
-              <div class="lesson-title">${lesson.title}</div>
             </a>
         `;
       });
