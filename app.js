@@ -325,9 +325,9 @@ class FlashcardApp {
     utterance.lang = 'ja-JP';
     
     // 3. Tuning for natural feel: 
-    // Slightly faster than 0.85 to sound less robotic, 
-    // and slightly higher pitch for clarity/cheerfulness.
-    utterance.rate = 0.95;
+    // Detect iOS/iPadOS as WebKit plays speech much faster than macOS/Chrome
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    utterance.rate = isIOS ? 0.65 : 0.95;
     utterance.pitch = 1.05;
     utterance.volume = 1.0;
 
