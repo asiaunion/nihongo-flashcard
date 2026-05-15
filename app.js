@@ -68,6 +68,74 @@ const CURRICULUM = {
           ]
         }
       ]
+    },
+    {
+      id: 2,
+      title: "가타카나 기본",
+      subtitle: "ア~ナ行",
+      type: "katakana",
+      lessons: [
+        {
+          id: 6,
+          title: "Lesson 6",
+          row: "ア行",
+          cards: [
+            { character: "ア", word: "アイス", wordReading: "アイス", meaningKo: "아이스크림", image: "images/realistic/aisu_realistic.png", highlightIndex: 0 },
+            { character: "イ", word: "インク", wordReading: "インク", meaningKo: "잉크", image: "images/realistic/inku_realistic.png", highlightIndex: 0 },
+            { character: "ウ", word: "ウクレレ", wordReading: "ウクレレ", meaningKo: "우쿨렐레", image: "images/realistic/ukurere_realistic.png", highlightIndex: 0 },
+            { character: "エ", word: "エプロン", wordReading: "エプロン", meaningKo: "앞치마", image: "images/realistic/epuron_realistic.png", highlightIndex: 0 },
+            { character: "オ", word: "オレンジ", wordReading: "オレンジ", meaningKo: "오렌지", image: "images/realistic/orenji_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 7,
+          title: "Lesson 7",
+          row: "カ行",
+          cards: [
+            { character: "カ", word: "カメラ", wordReading: "カメラ", meaningKo: "카메라", image: "images/realistic/kamera_realistic.png", highlightIndex: 0 },
+            { character: "キ", word: "キウイ", wordReading: "キウイ", meaningKo: "키위", image: "images/realistic/kiui_realistic.png", highlightIndex: 0 },
+            { character: "ク", word: "クッキー", wordReading: "クッキー", meaningKo: "쿠키", image: "images/realistic/kukkii_realistic.png", highlightIndex: 0 },
+            { character: "ケ", word: "ケーキ", wordReading: "ケーキ", meaningKo: "케이크", image: "images/realistic/keeki_realistic.png", highlightIndex: 0 },
+            { character: "コ", word: "コップ", wordReading: "コップ", meaningKo: "컵", image: "images/realistic/koppu_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 8,
+          title: "Lesson 8",
+          row: "サ行",
+          cards: [
+            { character: "サ", word: "サラダ", wordReading: "サラダ", meaningKo: "샐러드", image: "images/realistic/sarada_realistic.png", highlightIndex: 0 },
+            { character: "シ", word: "シャツ", wordReading: "シャツ", meaningKo: "셔츠", image: "images/realistic/shatsu_realistic.png", highlightIndex: 0 },
+            { character: "ス", word: "スプーン", wordReading: "スプーン", meaningKo: "스푼", image: "images/realistic/supuun_realistic.png", highlightIndex: 0 },
+            { character: "セ", word: "セーター", wordReading: "セーター", meaningKo: "스웨터", image: "images/realistic/seetaa_realistic.png", highlightIndex: 0 },
+            { character: "ソ", word: "ソーセージ", wordReading: "ソーセージ", meaningKo: "소시지", image: "images/realistic/sooseeji_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 9,
+          title: "Lesson 9",
+          row: "タ行",
+          cards: [
+            { character: "タ", word: "タオル", wordReading: "タオル", meaningKo: "수건", image: "images/realistic/taoru_realistic.png", highlightIndex: 0 },
+            { character: "チ", word: "チーズ", wordReading: "チーズ", meaningKo: "치즈", image: "images/realistic/chiizu_realistic.png", highlightIndex: 0 },
+            { character: "ツ", word: "ツリー", wordReading: "ツリー", meaningKo: "트리", image: "images/realistic/tsurii_realistic.png", highlightIndex: 0 },
+            { character: "テ", word: "テント", wordReading: "テント", meaningKo: "텐트", image: "images/realistic/tento_realistic.png", highlightIndex: 0 },
+            { character: "ト", word: "トマト", wordReading: "トマト", meaningKo: "토마토", image: "images/realistic/tomato_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 10,
+          title: "Lesson 10",
+          row: "ナ行",
+          cards: [
+            { character: "ナ", word: "ナイフ", wordReading: "ナイフ", meaningKo: "나이프", image: "images/realistic/naifu_realistic.png", highlightIndex: 0 },
+            { character: "ニ", word: "ニット", wordReading: "ニット", meaningKo: "니트", image: "images/realistic/nitto_realistic.png", highlightIndex: 0 },
+            { character: "ヌ", word: "ヌードル", wordReading: "ヌードル", meaningKo: "국수", image: "images/realistic/nuudoru_realistic.png", highlightIndex: 0 },
+            { character: "ネ", word: "ネクタイ", wordReading: "ネクタイ", meaningKo: "넥타이", image: "images/realistic/nekutai_realistic.png", highlightIndex: 0 },
+            { character: "ノ", word: "ノート", wordReading: "ノート", meaningKo: "공책", image: "images/realistic/nooto_realistic.png", highlightIndex: 0 }
+          ]
+        }
+      ]
     }
   ]
 };
@@ -113,6 +181,16 @@ class FlashcardApp {
       const img = new Image();
       img.src = src;
     });
+  }
+  
+  playTTS(text) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ja-JP';
+      utterance.rate = 0.85;
+      window.speechSynthesis.speak(utterance);
+    }
   }
   
   handleRoute() {
@@ -262,6 +340,11 @@ class FlashcardApp {
     container.addEventListener('click', () => {
       this.isFlipped = !this.isFlipped;
       flashcard.classList.toggle('flipped');
+      
+      if (this.isFlipped) {
+        const card = this.currentLesson.cards[this.currentCardIndex];
+        this.playTTS(card.wordReading);
+      }
       
       if (!this.hasFlippedOnce) {
         this.hasFlippedOnce = true;
