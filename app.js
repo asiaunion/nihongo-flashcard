@@ -117,8 +117,8 @@ class FlashcardApp {
       this.quizMode = false;
       this.startLesson(lessonId);
     } else if (hash.startsWith('#quiz/')) {
-      const lessonId = parseInt(hash.split('/')[1]);
-      this.startQuiz(lessonId);
+      const quizTarget = hash.split('/')[1]; // 'hiragana' or a number
+      this.startQuiz(quizTarget);
     }
   }
   
@@ -407,24 +407,34 @@ class FlashcardApp {
     `;
 
     document.getElementById('start-quiz-btn').addEventListener('click', () => {
-      window.location.hash = `#quiz/${lessonId}`;
+      // 히라가나 전체 퀴즈 시작 (#quiz/hiragana)
+      window.location.hash = `#quiz/hiragana`;
     });
   }
 
-  // ─── P1: 퀴즈 모드 ────────────────────────────────────
-  startQuiz(lessonId) {
-    const found = this.findLesson(lessonId);
-    if (!found) { window.location.hash = '#home'; return; }
-    this.currentLesson = found.lesson;
-    this.currentPhase = found.phase;
+  // ─── P1: 퀴즈 모드 (히라가나 전체 대상) ─────────────────
+  startQuiz(lessonIdOrType) {
     this.quizMode = true;
     this.currentCardIndex = 0;
     this.quizScore = 0;
+
+    // 히라가나 phase의 모든 카드를 풀링해서 셔플
+    const hiraganaPhase = CURRICULUM.phases.find(p => p.type === 'hiragana');
+    if (!hiraganaPhase) { window.location.hash = '#home'; return; }
+
+    const allHiraganaCards = hiraganaPhase.lessons.flatMap(l => l.cards);
+    // 셔플
+    this.quizDeck = allHiraganaCards.sort(() => Math.random() - 0.5);
+    this.currentLesson = null; // 단일 레슨이 아님
     this.renderQuiz();
   }
 
   generateQuizChoices(correctCard) {
-    const allCards = CURRICULUM.phases.flatMap(p => p.lessons.flatMap(l => l.cards));
+    // 히라가나 전체 카드 풀에서 오답 생성
+    const hiraganaPhase = CURRICULUM.phases.find(p => p.type === 'hiragana');
+    const allCards = hiraganaPhase
+      ? hiraganaPhase.lessons.flatMap(l => l.cards)
+      : CURRICULUM.phases.flatMap(p => p.lessons.flatMap(l => l.cards));
     const others = allCards.filter(c => c.meaningKo !== correctCard.meaningKo);
     const shuffled = others.sort(() => Math.random() - 0.5).slice(0, 3);
     const choices = [correctCard, ...shuffled].sort(() => Math.random() - 0.5);
@@ -432,10 +442,12 @@ class FlashcardApp {
   }
 
   renderQuiz() {
-    if (!this.currentLesson) return;
-    const card = this.currentLesson.cards[this.currentCardIndex];
-    const totalCards = this.currentLesson.cards.length;
-    const bgColor = this.currentPhase.type === 'hiragana' ? 'var(--peach)' : 'var(--mint)';
+    if (!this.quizDeck || this.quizDeck.length === 0) {
+      window.location.hash = '#home';
+      return;
+    }
+    const card = this.quizDeck[this.currentCardIndex];
+    const totalCards = this.quizDeck.length;
     const choices = this.generateQuizChoices(card);
     this.quizChoices = choices;
     this.quizAnswered = false;
@@ -444,18 +456,17 @@ class FlashcardApp {
       <div class="lesson-view quiz-view">
         <div class="top-bar">
           <a href="#home" class="home-btn">🏠 홈</a>
-          <div class="lesson-title-display">🎯 퀴즈 모드</div>
+          <div class="lesson-title-display">🎯 히라가나 퀴즈</div>
         </div>
         
         <div class="quiz-progress-bar">
-          <div class="quiz-progress-fill" style="width: ${((this.currentCardIndex) / totalCards) * 100}%"></div>
+          <div class="quiz-progress-fill" style="width: ${(this.currentCardIndex / totalCards) * 100}%"></div>
         </div>
         <div class="quiz-counter">${this.currentCardIndex + 1} / ${totalCards}</div>
 
-        <div class="quiz-card" style="background-color: ${bgColor};">
-          <img src="${card.image}" class="quiz-image" alt="illustration" loading="lazy"
-            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg=='">
-          <div class="quiz-char">${card.character}</div>
+        <div class="quiz-card-hiragana">
+          <div class="quiz-char-big">${card.character}</div>
+          <div class="quiz-word-hint">${card.wordReading}</div>
           <div class="quiz-question">이 글자의 뜻은?</div>
         </div>
 
@@ -469,8 +480,8 @@ class FlashcardApp {
       </div>
     `;
 
-    // TTS: 문제 글자 읽기
-    setTimeout(() => this.playTTS(card.wordReading), 400);
+    // TTS: 단어 읽기
+    setTimeout(() => this.playTTS(card.wordReading), 300);
 
     document.querySelectorAll('.quiz-choice-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -496,7 +507,7 @@ class FlashcardApp {
 
         // 1.2초 후 다음 카드 or 결과
         setTimeout(() => {
-          if (this.currentCardIndex < totalCards - 1) {
+          if (this.currentCardIndex < this.quizDeck.length - 1) {
             this.currentCardIndex++;
             this.renderQuiz();
           } else {
