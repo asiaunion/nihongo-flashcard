@@ -1359,7 +1359,7 @@ class FlashcardApp {
   }
   
   preloadImages() {
-    const images = ['images/joseph.svg'];
+    const images = ['images/joseph_anime.png'];
     CURRICULUM.phases.forEach(phase => {
       phase.lessons.forEach(lesson => {
         lesson.cards.forEach(card => {
@@ -1460,7 +1460,7 @@ class FlashcardApp {
     let html = `
       <div class="home-view">
         <div class="header">
-          <img src="images/joseph.svg" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
+          <img src="images/joseph_anime.png" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
           <h1 class="title">${CURRICULUM.appTitle}</h1>
         </div>
     `;
