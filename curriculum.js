@@ -977,10 +977,10 @@ const CURRICULUM = {
             },
             {
               "character": "ム",
-              "word": "ムース",
-              "wordReading": "ムース",
-              "meaningKo": "무스",
-              "image": "images/realistic/muusu_realistic.webp",
+              "word": "ムービー",
+              "wordReading": "ムービー",
+              "meaningKo": "영화",
+              "image": "images/realistic/muubii_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1079,10 +1079,10 @@ const CURRICULUM = {
             },
             {
               "character": "ワ",
-              "word": "ワイン",
-              "wordReading": "ワイン",
-              "meaningKo": "와인",
-              "image": "images/realistic/wain_realistic.webp",
+              "word": "ワッフル",
+              "wordReading": "ワッフル",
+              "meaningKo": "와플",
+              "image": "images/realistic/waffuru_realistic.webp",
               "highlightIndex": 0
             },
             {

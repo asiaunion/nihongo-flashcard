@@ -9,10 +9,22 @@ class FlashcardApp {
       this.completedLessons = [];
     }
     
+    // P1: 아코디언 상태 (기본: 히라가나 열림, 가타카나 닫힘)
+    try {
+      this.accordionState = JSON.parse(localStorage.getItem('accordionState') || '{"hiragana":true,"katakana":false}');
+    } catch (e) {
+      this.accordionState = { hiragana: true, katakana: false };
+    }
+    
     this.currentLesson = null;
     this.currentCardIndex = 0;
     this.isFlipped = false;
     this.hasFlippedOnce = localStorage.getItem('hasFlippedOnce') === 'true';
+    
+    // P1: 퀴즈 모드 상태
+    this.quizMode = false;
+    this.quizChoices = [];
+    this.quizAnswered = false;
     
     this.touchStartX = 0;
     this.touchEndX = 0;
@@ -20,12 +32,10 @@ class FlashcardApp {
     this.voices = [];
     const loadVoices = () => {
       this.voices = window.speechSynthesis.getVoices();
-      console.log(`Loaded ${this.voices.length} voices.`);
     };
     if ('speechSynthesis' in window) {
       loadVoices();
       window.speechSynthesis.onvoiceschanged = loadVoices;
-      // Chrome/Safari fallback: sometimes onvoiceschanged doesn't fire if voices are already cached
       setTimeout(loadVoices, 500);
       setTimeout(loadVoices, 1000);
     }
@@ -33,17 +43,17 @@ class FlashcardApp {
     window.addEventListener('hashchange', () => this.handleRoute());
     window.addEventListener('keydown', (e) => this.handleKeydown(e));
     
-    // Smart preload: mascot only at startup; lesson images load on demand
     this.preloadMascot();
     this.handleRoute();
   }
   
   preloadMascot() {
-    const img = new Image();
-    img.src = 'images/joseph_anime.webp';
+    ['images/joseph_anime.webp', 'images/realistic/joseph_cheer.webp'].forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }
 
-  // Preload images for a specific lesson; optionally prefetch next lesson after idle
   preloadLessonImages(lesson, prefetchNext = true) {
     lesson.cards.forEach(card => {
       const img = new Image();
@@ -51,7 +61,6 @@ class FlashcardApp {
     });
 
     if (prefetchNext) {
-      // Find and prefetch the next lesson's images after 1s idle
       setTimeout(() => {
         const allLessons = CURRICULUM.phases.flatMap(p => p.lessons);
         const idx = allLessons.findIndex(l => l.id === lesson.id);
@@ -68,67 +77,48 @@ class FlashcardApp {
   
   playTTS(text) {
     if (!('speechSynthesis' in window)) return;
-
-    // 1. Cancel previous speech
     window.speechSynthesis.cancel();
-
-    // 2. Create utterance with a Japanese period to force natural sentence-final intonation
     const speakText = text.endsWith('。') ? text : text + '。';
     const utterance = new SpeechSynthesisUtterance(speakText);
     utterance.lang = 'ja-JP';
-    
-    // 3. Tuning for natural feel: 
-    // Detect iOS/iPadOS as WebKit plays speech much faster than macOS/Chrome
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     utterance.rate = isIOS ? 0.6 : 0.95;
     utterance.pitch = isIOS ? 1.0 : 1.05;
     utterance.volume = 1.0;
 
-    // 4. Advanced Voice Selection Logic
     if (this.voices && this.voices.length > 0) {
       const jaVoices = this.voices.filter(v => v.lang.startsWith('ja'));
-      
       if (jaVoices.length > 0) {
-        // Priority Score System
         const getScore = (v) => {
           let score = 0;
           const name = v.name.toLowerCase();
-          
-          // MacOS/iOS Siri voices are top-tier natural
           if (name.includes('siri')) score += 100;
-          // Google Cloud-based voices in Chrome are excellent
           if (name.includes('google')) score += 90;
-          // "Enhanced" or "Premium" versions of system voices
           if (name.includes('enhanced') || name.includes('premium')) score += 80;
-          // Specific high-quality voice names
           if (name.includes('kyoko')) score += 50;
           if (name.includes('otoya')) score += 40;
           if (name.includes('o-ren') || name.includes('hattori')) score += 30;
-          
           return score;
         };
-
         const sortedVoices = jaVoices.sort((a, b) => getScore(b) - getScore(a));
         utterance.voice = sortedVoices[0];
-        
-        // Log for debugging/verification if needed
-        console.log(`Selected Voice: ${utterance.voice.name}`);
       }
     }
-
-    // 5. Speak with a tiny delay to ensure cancel() finished cleanly on some browsers
-    setTimeout(() => {
-      window.speechSynthesis.speak(utterance);
-    }, 50);
+    setTimeout(() => { window.speechSynthesis.speak(utterance); }, 50);
   }
   
   handleRoute() {
     const hash = window.location.hash || '#home';
     if (hash === '#home') {
+      this.quizMode = false;
       this.renderHome();
     } else if (hash.startsWith('#lesson/')) {
       const lessonId = parseInt(hash.split('/')[1]);
+      this.quizMode = false;
       this.startLesson(lessonId);
+    } else if (hash.startsWith('#quiz/')) {
+      const lessonId = parseInt(hash.split('/')[1]);
+      this.startQuiz(lessonId);
     }
   }
   
@@ -146,33 +136,61 @@ class FlashcardApp {
     }
     return null;
   }
-  
+
+  // ─── P1: 진도 바 계산 ───────────────────────────────────
+  getTotalProgress() {
+    const total = CURRICULUM.phases.reduce((sum, p) => sum + p.lessons.length, 0);
+    const done = this.completedLessons.length;
+    return { total, done, pct: total > 0 ? Math.round((done / total) * 100) : 0 };
+  }
+
+  // ─── P1: 홈 화면 렌더 (아코디언 + 진도 바) ─────────────
   renderHome() {
     this.currentLesson = null;
+    const { total, done, pct } = this.getTotalProgress();
+
     let html = `
       <div class="home-view">
         <div class="header">
-          <img src="images/joseph_anime.webp" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
+          <img src="images/joseph_anime.webp" class="mascot" alt="Joseph Mascot"
+            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI2MCIgeT0iNzUiIGZvbnQtc2l6ZT0iNTBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+YijwvdGV4dD48L3N2Zz4='">
           <h1 class="title">${CURRICULUM.appTitle}</h1>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-label">
+            <span>📚 전체 진도</span>
+            <span class="progress-count">${done} / ${total} 완료 (${pct}%)</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" style="width: ${pct}%"></div>
+          </div>
+          ${pct === 100 ? '<div class="progress-complete">🎉 모든 레슨 완료! すごい！</div>' : ''}
         </div>
     `;
     
     CURRICULUM.phases.forEach(phase => {
+      const phaseTotal = phase.lessons.length;
+      const phaseDone = phase.lessons.filter(l => this.completedLessons.includes(l.id)).length;
+      const isOpen = this.accordionState[phase.id] !== false;
+
       html += `
         <div class="phase-section">
-          <h2 class="phase-title">${phase.title}</h2>
-          <div class="lesson-grid">
+          <button class="phase-toggle" data-phase="${phase.id}" aria-expanded="${isOpen}">
+            <span class="phase-title-text">${phase.title}</span>
+            <span class="phase-badge">${phaseDone}/${phaseTotal}</span>
+            <span class="phase-arrow">${isOpen ? '▲' : '▼'}</span>
+          </button>
+          <div class="lesson-grid ${isOpen ? 'open' : 'closed'}" id="grid-${phase.id}">
       `;
       
       phase.lessons.forEach(lesson => {
         const isCompleted = this.completedLessons.includes(lesson.id);
         let displayRow = lesson.row;
-        // Clean up the text by removing anything after '行' and wrapping '行' in a smaller span.
-        // This drops '(탁음)' and '(반탁음)' which cause text overflow in the UI grid.
         displayRow = displayRow.replace(/行.*/, '<span class="row-sub">行</span>');
         
         html += `
-            <a href="#lesson/${lesson.id}" class="lesson-card">
+            <a href="#lesson/${lesson.id}" class="lesson-card ${isCompleted ? 'completed' : ''}">
               ${isCompleted ? '<div class="completed-check">✓</div>' : ''}
               <div class="lesson-row">${displayRow}</div>
             </a>
@@ -184,14 +202,23 @@ class FlashcardApp {
     
     html += `</div>`;
     this.appEl.innerHTML = html;
+    this.attachHomeEvents();
+  }
+
+  attachHomeEvents() {
+    document.querySelectorAll('.phase-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const phaseId = btn.getAttribute('data-phase');
+        this.accordionState[phaseId] = !this.accordionState[phaseId];
+        localStorage.setItem('accordionState', JSON.stringify(this.accordionState));
+        this.renderHome();
+      });
+    });
   }
   
   startLesson(lessonId) {
     const found = this.findLesson(lessonId);
-    if (!found) {
-      window.location.hash = '#home';
-      return;
-    }
+    if (!found) { window.location.hash = '#home'; return; }
     this.currentLesson = found.lesson;
     this.currentPhase = found.phase;
     this.currentCardIndex = 0;
@@ -208,7 +235,6 @@ class FlashcardApp {
     const isLastCard = this.currentCardIndex === totalCards - 1;
     const bgColor = this.currentPhase.type === 'hiragana' ? 'var(--peach)' : 'var(--mint)';
     
-    // Format highlighted word
     let wordHtml = '';
     for (let i = 0; i < card.wordReading.length; i++) {
       if (i === card.highlightIndex) {
@@ -234,7 +260,8 @@ class FlashcardApp {
         <div class="flashcard-container" id="flashcard-container">
           <div class="flashcard ${this.isFlipped ? 'flipped' : ''} ${!this.hasFlippedOnce ? 'bounce' : ''}" id="flashcard">
             <div class="card-face card-front" style="background-color: ${bgColor};">
-              <img src="${card.image}" class="card-image" alt="illustration" loading="lazy" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjgIxf44CMKTwvdGV4dD48L3N2Zz4='">
+              <img src="${card.image}" class="card-image" alt="illustration" loading="lazy"
+                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjgIxf44CMKTwvdGV4dD48L3N2Zz4='">
               <div class="card-char">${card.character}</div>
             </div>
             <div class="card-face card-back">
@@ -280,10 +307,7 @@ class FlashcardApp {
       
       if (this.isFlipped) {
         const card = this.currentLesson.cards[this.currentCardIndex];
-        // Natural pause before speaking when card is flipped (300ms)
-        setTimeout(() => {
-          if (this.isFlipped) this.playTTS(card.wordReading);
-        }, 300);
+        setTimeout(() => { if (this.isFlipped) this.playTTS(card.wordReading); }, 300);
       }
       
       if (!this.hasFlippedOnce) {
@@ -294,49 +318,40 @@ class FlashcardApp {
         if (hint) hint.classList.remove('visible');
       }
       
-      // If last card and flipped, show done button, hide nav
       const isLastCard = this.currentCardIndex === this.currentLesson.cards.length - 1;
       if (isLastCard) {
         const doneBtn = document.getElementById('done-btn');
         const navBar = document.querySelector('.nav-bar');
         if (doneBtn && navBar) {
           if (this.isFlipped) {
-             doneBtn.style.display = 'flex';
-             navBar.style.display = 'none';
+            doneBtn.style.display = 'flex';
+            navBar.style.display = 'none';
           } else {
-             doneBtn.style.display = 'none';
-             navBar.style.display = 'flex';
+            doneBtn.style.display = 'none';
+            navBar.style.display = 'flex';
           }
         }
       }
     });
 
-    // Manual TTS button event
     const manualBtn = document.getElementById('manual-tts-btn');
     if (manualBtn) {
       manualBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Don't flip the card back
+        e.stopPropagation();
         const card = this.currentLesson.cards[this.currentCardIndex];
         this.playTTS(card.wordReading);
-        
-        // Visual feedback
         manualBtn.classList.add('playing');
         setTimeout(() => manualBtn.classList.remove('playing'), 600);
       });
     }
     
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => this.navigateCard(-1));
-    }
-    
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => this.navigateCard(1));
-    }
+    if (prevBtn) prevBtn.addEventListener('click', () => this.navigateCard(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => this.navigateCard(1));
     
     if (doneBtn) {
       doneBtn.addEventListener('click', () => {
         this.markLessonCompleted(this.currentLesson.id);
-        window.location.hash = '#home';
+        this.showLessonComplete();
       });
     }
     
@@ -351,7 +366,6 @@ class FlashcardApp {
       });
     });
     
-    // Swipe gestures
     container.addEventListener('touchstart', e => {
       this.touchStartX = e.changedTouches[0].screenX;
     }, {passive: true});
@@ -361,15 +375,175 @@ class FlashcardApp {
       this.handleSwipe();
     }, {passive: true});
   }
+
+  // ─── P1: 레슨 완료 화면 (마스코트 피드백) ───────────────
+  showLessonComplete() {
+    const lessonId = this.currentLesson.id;
+    const { total, done } = this.getTotalProgress();
+    
+    const messages = [
+      'すごい！よくできました！🌟',
+      'やったー！かんぺきです！🎉',
+      'すばらしい！천재야！✨',
+      'がんばった！よかったです！🏆',
+      'すごいね！どんどんうまくなってる！🚀'
+    ];
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+
+    this.appEl.innerHTML = `
+      <div class="lesson-complete-view">
+        <img src="images/realistic/joseph_cheer.webp" class="mascot-cheer" alt="Joseph cheering"
+          onerror="this.src='images/joseph_anime.webp'">
+        <div class="speech-bubble">${msg}</div>
+        <div class="complete-stats">
+          <div class="complete-title">레슨 완료! 🎊</div>
+          <div class="complete-progress">전체 ${done} / ${total} 레슨 완료</div>
+        </div>
+        <div class="complete-actions">
+          <button class="quiz-start-btn" id="start-quiz-btn">🎯 퀴즈 도전!</button>
+          <a href="#home" class="home-return-btn">🏠 홈으로</a>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('start-quiz-btn').addEventListener('click', () => {
+      window.location.hash = `#quiz/${lessonId}`;
+    });
+  }
+
+  // ─── P1: 퀴즈 모드 ────────────────────────────────────
+  startQuiz(lessonId) {
+    const found = this.findLesson(lessonId);
+    if (!found) { window.location.hash = '#home'; return; }
+    this.currentLesson = found.lesson;
+    this.currentPhase = found.phase;
+    this.quizMode = true;
+    this.currentCardIndex = 0;
+    this.quizScore = 0;
+    this.renderQuiz();
+  }
+
+  generateQuizChoices(correctCard) {
+    const allCards = CURRICULUM.phases.flatMap(p => p.lessons.flatMap(l => l.cards));
+    const others = allCards.filter(c => c.meaningKo !== correctCard.meaningKo);
+    const shuffled = others.sort(() => Math.random() - 0.5).slice(0, 3);
+    const choices = [correctCard, ...shuffled].sort(() => Math.random() - 0.5);
+    return choices;
+  }
+
+  renderQuiz() {
+    if (!this.currentLesson) return;
+    const card = this.currentLesson.cards[this.currentCardIndex];
+    const totalCards = this.currentLesson.cards.length;
+    const bgColor = this.currentPhase.type === 'hiragana' ? 'var(--peach)' : 'var(--mint)';
+    const choices = this.generateQuizChoices(card);
+    this.quizChoices = choices;
+    this.quizAnswered = false;
+
+    this.appEl.innerHTML = `
+      <div class="lesson-view quiz-view">
+        <div class="top-bar">
+          <a href="#home" class="home-btn">🏠 홈</a>
+          <div class="lesson-title-display">🎯 퀴즈 모드</div>
+        </div>
+        
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" style="width: ${((this.currentCardIndex) / totalCards) * 100}%"></div>
+        </div>
+        <div class="quiz-counter">${this.currentCardIndex + 1} / ${totalCards}</div>
+
+        <div class="quiz-card" style="background-color: ${bgColor};">
+          <img src="${card.image}" class="quiz-image" alt="illustration" loading="lazy"
+            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg=='">
+          <div class="quiz-char">${card.character}</div>
+          <div class="quiz-question">이 글자의 뜻은?</div>
+        </div>
+
+        <div class="quiz-choices" id="quiz-choices">
+          ${choices.map((c, i) => `
+            <button class="quiz-choice-btn" data-idx="${i}" id="choice-${i}">
+              ${c.meaningKo}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    // TTS: 문제 글자 읽기
+    setTimeout(() => this.playTTS(card.wordReading), 400);
+
+    document.querySelectorAll('.quiz-choice-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (this.quizAnswered) return;
+        this.quizAnswered = true;
+        
+        const idx = parseInt(btn.getAttribute('data-idx'));
+        const selected = this.quizChoices[idx];
+        const isCorrect = selected.meaningKo === card.meaningKo;
+        
+        if (isCorrect) {
+          this.quizScore++;
+          btn.classList.add('correct');
+        } else {
+          btn.classList.add('wrong');
+          // 정답 표시
+          document.querySelectorAll('.quiz-choice-btn').forEach((b, i) => {
+            if (this.quizChoices[i].meaningKo === card.meaningKo) {
+              b.classList.add('correct');
+            }
+          });
+        }
+
+        // 1.2초 후 다음 카드 or 결과
+        setTimeout(() => {
+          if (this.currentCardIndex < totalCards - 1) {
+            this.currentCardIndex++;
+            this.renderQuiz();
+          } else {
+            this.showQuizResult(totalCards);
+          }
+        }, 1200);
+      });
+    });
+  }
+
+  showQuizResult(totalCards) {
+    const pct = Math.round((this.quizScore / totalCards) * 100);
+    let grade = '';
+    if (pct === 100) grade = '🏆 만점! すごい！';
+    else if (pct >= 80) grade = '🌟 잘했어요!';
+    else if (pct >= 60) grade = '👍 좋아요! 조금 더 해봐요';
+    else grade = '💪 다시 한번 해봐요!';
+
+    this.appEl.innerHTML = `
+      <div class="lesson-complete-view">
+        <img src="images/realistic/joseph_cheer.webp" class="mascot-cheer" alt="Joseph"
+          onerror="this.src='images/joseph_anime.webp'">
+        <div class="speech-bubble">${grade}</div>
+        <div class="complete-stats">
+          <div class="quiz-result-score">${this.quizScore} / ${totalCards}</div>
+          <div class="quiz-result-pct">${pct}점</div>
+        </div>
+        <div class="complete-actions">
+          <button class="quiz-start-btn" id="retry-quiz-btn">🔄 다시 도전!</button>
+          <a href="#home" class="home-return-btn">🏠 홈으로</a>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('retry-quiz-btn').addEventListener('click', () => {
+      this.currentCardIndex = 0;
+      this.quizScore = 0;
+      this.renderQuiz();
+    });
+  }
   
   handleSwipe() {
     const diff = this.touchEndX - this.touchStartX;
     if (Math.abs(diff) > 40) {
       if (diff > 0 && this.currentCardIndex > 0) {
-        // Swipe right -> prev
         this.navigateCard(-1);
       } else if (diff < 0 && this.currentCardIndex < this.currentLesson.cards.length - 1) {
-        // Swipe left -> next
         this.navigateCard(1);
       }
     }
@@ -377,6 +551,7 @@ class FlashcardApp {
   
   handleKeydown(e) {
     if (!this.currentLesson) return;
+    if (this.quizMode) return;
     if (e.key === 'ArrowLeft' && this.currentCardIndex > 0) {
       this.navigateCard(-1);
     } else if (e.key === 'ArrowRight' && this.currentCardIndex < this.currentLesson.cards.length - 1) {

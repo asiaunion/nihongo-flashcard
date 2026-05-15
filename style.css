@@ -76,19 +76,116 @@ body {
   max-width: 800px;
 }
 
-.phase-title {
-  font-size: 24px;
+/* P1: 아코디언 토글 버튼 */
+.phase-toggle {
+  width: 100%;
+  background: white;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.phase-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.phase-title-text {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--pink);
+  flex: 1;
+  text-align: left;
+}
+
+.phase-badge {
+  background: var(--mint);
+  color: white;
+  font-size: 14px;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 4px dashed var(--pink);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+.phase-arrow {
+  font-size: 16px;
   color: var(--text);
+  transition: transform 0.3s;
 }
 
 .lesson-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 16px;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.lesson-grid.open {
+  max-height: 2000px;
+  opacity: 1;
+  margin-bottom: 24px;
+}
+
+.lesson-grid.closed {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 8px;
+}
+
+/* P1: 진도 섹션 */
+.progress-section {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.progress-count {
+  color: var(--mint);
+  font-size: 14px;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 16px;
+  background: #f0f0f0;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), var(--pink));
+  border-radius: 50px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-complete {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mint);
+  animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .lesson-card {
@@ -468,5 +565,258 @@ body {
   
   .top-bar {
     padding: 0 20px;
+  }
+}
+
+/* ─── P1: 레슨 완료 화면 ─────────────────────────────── */
+.lesson-complete-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mascot-cheer {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  animation: bounce-hint 0.8s ease-in-out 3;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+.speech-bubble {
+  background: white;
+  border-radius: 24px;
+  padding: 16px 28px;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  text-align: center;
+  color: var(--pink);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: white;
+}
+
+.complete-stats {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: var(--card-shadow);
+}
+
+.complete-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.complete-progress {
+  font-size: 16px;
+  color: #888;
+  font-weight: 700;
+}
+
+.quiz-result-score {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--pink);
+}
+
+.quiz-result-pct {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mint);
+}
+
+.complete-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quiz-start-btn {
+  background: linear-gradient(135deg, var(--mint), #2EC4B6);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46,196,182,0.4);
+  transition: all 0.2s;
+  animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+}
+
+.quiz-start-btn:hover, .quiz-start-btn:active {
+  transform: scale(1.05) translateY(-3px);
+}
+
+.home-return-btn {
+  background: white;
+  color: var(--text);
+  padding: 16px 32px;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s;
+  animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s both;
+}
+
+.home-return-btn:hover, .home-return-btn:active {
+  transform: scale(1.05) translateY(-3px);
+}
+
+/* ─── P1: 퀴즈 모드 ──────────────────────────────────── */
+.quiz-view {
+  gap: 16px;
+}
+
+.quiz-progress-bar {
+  width: 100%;
+  max-width: 500px;
+  height: 10px;
+  background: #f0f0f0;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), var(--pink));
+  border-radius: 50px;
+  transition: width 0.5s ease;
+}
+
+.quiz-counter {
+  font-size: 14px;
+  font-weight: 700;
+  color: #888;
+}
+
+.quiz-card {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--card-shadow);
+  border: 6px solid white;
+}
+
+.quiz-image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+}
+
+.quiz-char {
+  font-size: 72px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  line-height: 1;
+}
+
+.quiz-question {
+  font-size: 18px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.7);
+  padding: 8px 20px;
+  border-radius: 50px;
+  color: var(--text);
+}
+
+.quiz-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.quiz-choice-btn {
+  background: white;
+  border: 3px solid #eee;
+  border-radius: 16px;
+  padding: 16px 12px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--card-shadow);
+  color: var(--text);
+}
+
+.quiz-choice-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: var(--pink);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.quiz-choice-btn.correct {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: white;
+  transform: scale(1.05);
+}
+
+.quiz-choice-btn.wrong {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+  color: white;
+}
+
+/* 완료된 레슨 카드 테두리 */
+.lesson-card.completed {
+  border: 3px solid var(--mint);
+}
+
+@media (max-width: 600px) {
+  .quiz-choices {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .quiz-choice-btn {
+    font-size: 16px;
+    padding: 14px 10px;
+  }
+
+  .mascot-cheer {
+    width: 160px;
+    height: 160px;
+  }
+
+  .complete-actions {
+    flex-direction: column;
+    align-items: center;
   }
 }
