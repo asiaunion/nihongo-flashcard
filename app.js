@@ -204,6 +204,74 @@ const CURRICULUM = {
           ]
         }
       ]
+    },
+    {
+      id: 4,
+      title: "히라가나 심화",
+      subtitle: "は~ん, 탁음",
+      type: "hiragana",
+      lessons: [
+        {
+          id: 16,
+          title: "Lesson 16",
+          row: "は行",
+          cards: [
+            { character: "は", word: "はち", wordReading: "はち", meaningKo: "꿀벌", image: "images/realistic/hachi_realistic.png", highlightIndex: 0 },
+            { character: "ひ", word: "ひこうき", wordReading: "ひこうき", meaningKo: "비행기", image: "images/realistic/hikouki_realistic.png", highlightIndex: 0 },
+            { character: "ふ", word: "ふね", wordReading: "ふね", meaningKo: "배", image: "images/realistic/fune_realistic.png", highlightIndex: 0 },
+            { character: "へ", word: "へび", wordReading: "へび", meaningKo: "뱀", image: "images/realistic/hebi_realistic.png", highlightIndex: 0 },
+            { character: "ほ", word: "ほし", wordReading: "ほし", meaningKo: "별", image: "images/realistic/hoshi_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 17,
+          title: "Lesson 17",
+          row: "ま行",
+          cards: [
+            { character: "ま", word: "まど", wordReading: "まど", meaningKo: "창문", image: "images/realistic/mado_realistic.png", highlightIndex: 0 },
+            { character: "み", word: "みかん", wordReading: "みかん", meaningKo: "귤", image: "images/realistic/mikan_realistic.png", highlightIndex: 0 },
+            { character: "む", word: "むし", wordReading: "むし", meaningKo: "벌레", image: "images/realistic/mushi_realistic.png", highlightIndex: 0 },
+            { character: "め", word: "めがね", wordReading: "めがね", meaningKo: "안경", image: "images/realistic/megane_realistic.png", highlightIndex: 0 },
+            { character: "も", word: "もも", wordReading: "もも", meaningKo: "복숭아", image: "images/realistic/momo_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 18,
+          title: "Lesson 18",
+          row: "や・わ行",
+          cards: [
+            { character: "や", word: "やま", wordReading: "やま", meaningKo: "산", image: "images/realistic/yama_realistic.png", highlightIndex: 0 },
+            { character: "ゆ", word: "ゆき", wordReading: "ゆき", meaningKo: "눈", image: "images/realistic/yuki_realistic.png", highlightIndex: 0 },
+            { character: "よ", word: "よる", wordReading: "よる", meaningKo: "밤", image: "images/realistic/yoru_realistic.png", highlightIndex: 0 },
+            { character: "わ", word: "わに", wordReading: "わに", meaningKo: "악어", image: "images/realistic/wani_realistic.png", highlightIndex: 0 },
+            { character: "ん", word: "ほん", wordReading: "ほん", meaningKo: "책", image: "images/realistic/hon_realistic.png", highlightIndex: 1 }
+          ]
+        },
+        {
+          id: 19,
+          title: "Lesson 19",
+          row: "ら行",
+          cards: [
+            { character: "ら", word: "らっぱ", wordReading: "らっぱ", meaningKo: "나팔", image: "images/realistic/rappa_realistic.png", highlightIndex: 0 },
+            { character: "り", word: "りんご", wordReading: "りんご", meaningKo: "사과", image: "images/realistic/ringo_realistic.png", highlightIndex: 0 },
+            { character: "る", word: "さる", wordReading: "さる", meaningKo: "원숭이", image: "images/realistic/saru_realistic.png", highlightIndex: 1 },
+            { character: "れ", word: "れいぞうこ", wordReading: "れいぞうこ", meaningKo: "냉장고", image: "images/realistic/reizouko_realistic.png", highlightIndex: 0 },
+            { character: "ろ", word: "ろうそく", wordReading: "ろうそく", meaningKo: "양초", image: "images/realistic/rousoku_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 20,
+          title: "Lesson 20",
+          row: "탁음 등",
+          cards: [
+            { character: "が", word: "がっこう", wordReading: "がっこう", meaningKo: "학교", image: "images/realistic/gakkou_realistic.png", highlightIndex: 0 },
+            { character: "ぞ", word: "ぞう", wordReading: "ぞう", meaningKo: "코끼리", image: "images/realistic/zou_realistic.png", highlightIndex: 0 },
+            { character: "ど", word: "どんぐり", wordReading: "どんぐり", meaningKo: "도토리", image: "images/realistic/donguri_realistic.png", highlightIndex: 0 },
+            { character: "ぶ", word: "ぶた", wordReading: "ぶた", meaningKo: "돼지", image: "images/realistic/buta_realistic.png", highlightIndex: 0 },
+            { character: "ぼ", word: "ぼうし", wordReading: "ぼうし", meaningKo: "모자", image: "images/realistic/boushi_realistic.png", highlightIndex: 0 }
+          ]
+        }
+      ]
     }
   ]
 };
@@ -249,7 +317,7 @@ class FlashcardApp {
   }
   
   preloadImages() {
-    const images = ['images/mascot.png'];
+    const images = ['images/joseph.svg'];
     CURRICULUM.phases.forEach(phase => {
       phase.lessons.forEach(lesson => {
         lesson.cards.forEach(card => {
@@ -349,7 +417,7 @@ class FlashcardApp {
     let html = `
       <div class="home-view">
         <div class="header">
-          <img src="images/mascot.png" class="mascot" alt="Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
+          <img src="images/joseph.svg" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
           <h1 class="title">${CURRICULUM.appTitle}</h1>
         </div>
     `;
