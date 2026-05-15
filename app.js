@@ -136,6 +136,74 @@ const CURRICULUM = {
           ]
         }
       ]
+    },
+    {
+      id: 3,
+      title: "가타카나 심화",
+      subtitle: "ハ~ン, 탁음",
+      type: "katakana",
+      lessons: [
+        {
+          id: 11,
+          title: "Lesson 11",
+          row: "ハ行",
+          cards: [
+            { character: "ハ", word: "ハム", wordReading: "ハム", meaningKo: "햄", image: "images/realistic/hamu_realistic.png", highlightIndex: 0 },
+            { character: "ヒ", word: "ヒーター", wordReading: "ヒーター", meaningKo: "히터", image: "images/realistic/hiitaa_realistic.png", highlightIndex: 0 },
+            { character: "フ", word: "フォーク", wordReading: "フォーク", meaningKo: "포크", image: "images/realistic/fooku_realistic.png", highlightIndex: 0 },
+            { character: "ヘ", word: "ヘリコプター", wordReading: "ヘリコプター", meaningKo: "헬리콥터", image: "images/realistic/herikoputaa_realistic.png", highlightIndex: 0 },
+            { character: "ホ", word: "ホース", wordReading: "ホース", meaningKo: "호스", image: "images/realistic/hoosu_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 12,
+          title: "Lesson 12",
+          row: "マ行",
+          cards: [
+            { character: "マ", word: "マイク", wordReading: "マイク", meaningKo: "마이크", image: "images/realistic/maiku_realistic.png", highlightIndex: 0 },
+            { character: "ミ", word: "ミルク", wordReading: "ミルク", meaningKo: "우유", image: "images/realistic/miruku_realistic.png", highlightIndex: 0 },
+            { character: "ム", word: "ムース", wordReading: "ムース", meaningKo: "무스", image: "images/realistic/muusu_realistic.png", highlightIndex: 0 },
+            { character: "メ", word: "メロン", wordReading: "メロン", meaningKo: "멜론", image: "images/realistic/meron_realistic.png", highlightIndex: 0 },
+            { character: "モ", word: "モニター", wordReading: "モニター", meaningKo: "모니터", image: "images/realistic/monitaa_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 13,
+          title: "Lesson 13",
+          row: "ヤ・ワ行",
+          cards: [
+            { character: "ヤ", word: "タイヤ", wordReading: "タイヤ", meaningKo: "타이어", image: "images/realistic/taiya_realistic.png", highlightIndex: 2 },
+            { character: "ユ", word: "ユニフォーム", wordReading: "ユニフォーム", meaningKo: "유니폼", image: "images/realistic/yunifoomu_realistic.png", highlightIndex: 0 },
+            { character: "ヨ", word: "ヨーヨー", wordReading: "ヨーヨー", meaningKo: "요요", image: "images/realistic/yooyoo_realistic.png", highlightIndex: 0 },
+            { character: "ワ", word: "ワイン", wordReading: "ワイン", meaningKo: "와인", image: "images/realistic/wain_realistic.png", highlightIndex: 0 },
+            { character: "ン", word: "パン", wordReading: "パン", meaningKo: "빵", image: "images/realistic/pan_realistic.png", highlightIndex: 1 }
+          ]
+        },
+        {
+          id: 14,
+          title: "Lesson 14",
+          row: "ラ行",
+          cards: [
+            { character: "ラ", word: "ライオン", wordReading: "ライオン", meaningKo: "사자", image: "images/realistic/raion_realistic.png", highlightIndex: 0 },
+            { character: "リ", word: "リボン", wordReading: "リボン", meaningKo: "리본", image: "images/realistic/ribon_realistic.png", highlightIndex: 0 },
+            { character: "ル", word: "ルビー", wordReading: "ルビー", meaningKo: "루비", image: "images/realistic/rubii_realistic.png", highlightIndex: 0 },
+            { character: "レ", word: "レモン", wordReading: "レモン", meaningKo: "레몬", image: "images/realistic/remon_realistic.png", highlightIndex: 0 },
+            { character: "ロ", word: "ロボット", wordReading: "ロボット", meaningKo: "로봇", image: "images/realistic/robotto_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 15,
+          title: "Lesson 15",
+          row: "탁음 등",
+          cards: [
+            { character: "ガ", word: "ガラス", wordReading: "ガラス", meaningKo: "유리", image: "images/realistic/garasu_realistic.png", highlightIndex: 0 },
+            { character: "ピ", word: "ピアノ", wordReading: "ピアノ", meaningKo: "피아노", image: "images/realistic/piano_realistic.png", highlightIndex: 0 },
+            { character: "ブ", word: "ブロック", wordReading: "ブロック", meaningKo: "블록", image: "images/realistic/burokku_realistic.png", highlightIndex: 0 },
+            { character: "ペ", word: "ペンギン", wordReading: "ペンギン", meaningKo: "펭귄", image: "images/realistic/pengin_realistic.png", highlightIndex: 0 },
+            { character: "ポ", word: "ポスト", wordReading: "ポスト", meaningKo: "우체통", image: "images/realistic/posuto_realistic.png", highlightIndex: 0 }
+          ]
+        }
+      ]
     }
   ]
 };
@@ -158,6 +226,15 @@ class FlashcardApp {
     
     this.touchStartX = 0;
     this.touchEndX = 0;
+    
+    this.voices = [];
+    const loadVoices = () => {
+      this.voices = window.speechSynthesis.getVoices();
+    };
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
     
     window.addEventListener('hashchange', () => this.handleRoute());
     window.addEventListener('keydown', (e) => this.handleKeydown(e));
@@ -189,6 +266,25 @@ class FlashcardApp {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'ja-JP';
       utterance.rate = 0.85;
+      
+      if (this.voices && this.voices.length > 0) {
+        const jaVoices = this.voices.filter(v => v.lang.includes('ja'));
+        // Find premium/natural voices available on iOS, macOS, Chrome
+        const preferredVoice = jaVoices.find(v => 
+          v.name.includes('Kyoko') || 
+          v.name.includes('Google 日本語') || 
+          v.name.includes('O-ren') ||
+          v.name.includes('Siri') ||
+          v.name.includes('Otoya')
+        );
+        
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+        } else if (jaVoices.length > 0) {
+          utterance.voice = jaVoices[0];
+        }
+      }
+      
       window.speechSynthesis.speak(utterance);
     }
   }
