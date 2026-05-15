@@ -87,23 +87,24 @@ body {
 
 .lesson-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
 }
 
 .lesson-card {
   background: white;
   border-radius: 16px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
   text-decoration: none;
   box-shadow: var(--card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   position: relative;
+  aspect-ratio: 4 / 3;
 }
 
 .lesson-card:hover, .lesson-card:active {
@@ -439,6 +440,27 @@ body {
 }
 
 @media (max-width: 600px) {
+  .lesson-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+  
+  .lesson-row {
+    font-size: 32px;
+  }
+  
+  .row-sub {
+    font-size: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .phase-title {
+    font-size: 20px;
+  }
+
   .flashcard-container {
     width: 90vw;
     max-width: none;
