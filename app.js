@@ -407,35 +407,31 @@ class FlashcardApp {
     `;
 
     document.getElementById('start-quiz-btn').addEventListener('click', () => {
-      // 히라가나 전체 퀴즈 시작 (#quiz/hiragana)
-      window.location.hash = `#quiz/hiragana`;
+      // 완료한 레슨 ID로 퀴즈 시작
+      window.location.hash = `#quiz/${lessonId}`;
     });
   }
 
-  // ─── P1: 퀴즈 모드 (히라가나 전체 대상) ─────────────────
-  startQuiz(lessonIdOrType) {
+  // ─── P1: 퀴즈 모드 (완료한 레슨 5장, 히라가나/가타카나 공통 UI) ───
+  startQuiz(lessonId) {
+    const found = this.findLesson(parseInt(lessonId));
+    if (!found) { window.location.hash = '#home'; return; }
+    this.currentLesson = found.lesson;
+    this.currentPhase = found.phase;
     this.quizMode = true;
     this.currentCardIndex = 0;
     this.quizScore = 0;
-
-    // 히라가나 phase의 모든 카드를 풀링해서 셔플
-    const hiraganaPhase = CURRICULUM.phases.find(p => p.type === 'hiragana');
-    if (!hiraganaPhase) { window.location.hash = '#home'; return; }
-
-    const allHiraganaCards = hiraganaPhase.lessons.flatMap(l => l.cards);
-    // 셔플
-    this.quizDeck = allHiraganaCards.sort(() => Math.random() - 0.5);
-    this.currentLesson = null; // 단일 레슨이 아님
+    // 완료한 레슨의 카드만 셸플로 퀴즈덱
+    this.quizDeck = [...found.lesson.cards].sort(() => Math.random() - 0.5);
     this.renderQuiz();
   }
 
   generateQuizChoices(correctCard) {
-    // 히라가나 전체 카드 풀에서 오답 생성
-    const hiraganaPhase = CURRICULUM.phases.find(p => p.type === 'hiragana');
-    const allCards = hiraganaPhase
-      ? hiraganaPhase.lessons.flatMap(l => l.cards)
+    // 오답은 같은 phase의 카드 풀에서만 생성
+    const samePhaseCards = this.currentPhase
+      ? this.currentPhase.lessons.flatMap(l => l.cards)
       : CURRICULUM.phases.flatMap(p => p.lessons.flatMap(l => l.cards));
-    const others = allCards.filter(c => c.meaningKo !== correctCard.meaningKo);
+    const others = samePhaseCards.filter(c => c.meaningKo !== correctCard.meaningKo);
     const shuffled = others.sort(() => Math.random() - 0.5).slice(0, 3);
     const choices = [correctCard, ...shuffled].sort(() => Math.random() - 0.5);
     return choices;
@@ -452,11 +448,13 @@ class FlashcardApp {
     this.quizChoices = choices;
     this.quizAnswered = false;
 
+    const phaseLabel = this.currentPhase?.type === 'katakana' ? '가타카나' : '히라가나';
+
     this.appEl.innerHTML = `
       <div class="lesson-view quiz-view">
         <div class="top-bar">
           <a href="#home" class="home-btn">🏠 홈</a>
-          <div class="lesson-title-display">🎯 히라가나 퀴즈</div>
+          <div class="lesson-title-display">🎯 ${phaseLabel} 퀴즈</div>
         </div>
         
         <div class="quiz-progress-bar">
