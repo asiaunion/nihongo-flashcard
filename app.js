@@ -320,8 +320,9 @@ class FlashcardApp {
     // 1. Cancel previous speech
     window.speechSynthesis.cancel();
 
-    // 2. Create utterance
-    const utterance = new SpeechSynthesisUtterance(text);
+    // 2. Create utterance with a Japanese period to force natural sentence-final intonation
+    const speakText = text.endsWith('。') ? text : text + '。';
+    const utterance = new SpeechSynthesisUtterance(speakText);
     utterance.lang = 'ja-JP';
     
     // 3. Tuning for natural feel: 
