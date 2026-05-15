@@ -16,7 +16,7 @@ const CURRICULUM = {
               "word": "あり",
               "wordReading": "あり",
               "meaningKo": "개미",
-              "image": "images/realistic/ari_realistic.png",
+              "image": "images/realistic/ari_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -24,7 +24,7 @@ const CURRICULUM = {
               "word": "いぬ",
               "wordReading": "いぬ",
               "meaningKo": "강아지",
-              "image": "images/realistic/inu_realistic.png",
+              "image": "images/realistic/inu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -32,7 +32,7 @@ const CURRICULUM = {
               "word": "うさぎ",
               "wordReading": "うさぎ",
               "meaningKo": "토끼",
-              "image": "images/realistic/usagi_realistic.png",
+              "image": "images/realistic/usagi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -40,7 +40,7 @@ const CURRICULUM = {
               "word": "えんぴつ",
               "wordReading": "えんぴつ",
               "meaningKo": "연필",
-              "image": "images/realistic/enpitsu_realistic.png",
+              "image": "images/realistic/enpitsu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -48,7 +48,7 @@ const CURRICULUM = {
               "word": "おにぎり",
               "wordReading": "おにぎり",
               "meaningKo": "주먹밥",
-              "image": "images/realistic/onigiri_realistic.png",
+              "image": "images/realistic/onigiri_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -63,7 +63,7 @@ const CURRICULUM = {
               "word": "かえる",
               "wordReading": "かえる",
               "meaningKo": "개구리",
-              "image": "images/realistic/kaeru_realistic.png",
+              "image": "images/realistic/kaeru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -71,7 +71,7 @@ const CURRICULUM = {
               "word": "きりん",
               "wordReading": "きりん",
               "meaningKo": "기린",
-              "image": "images/realistic/kirin_realistic.png",
+              "image": "images/realistic/kirin_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -79,7 +79,7 @@ const CURRICULUM = {
               "word": "くるま",
               "wordReading": "くるま",
               "meaningKo": "자동차",
-              "image": "images/realistic/kuruma_realistic.png",
+              "image": "images/realistic/kuruma_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -87,7 +87,7 @@ const CURRICULUM = {
               "word": "けむし",
               "wordReading": "けむし",
               "meaningKo": "애벌레",
-              "image": "images/realistic/kemushi_realistic.png",
+              "image": "images/realistic/kemushi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -95,7 +95,7 @@ const CURRICULUM = {
               "word": "こねこ",
               "wordReading": "こねこ",
               "meaningKo": "아기 고양이",
-              "image": "images/realistic/koneko_realistic.png",
+              "image": "images/realistic/koneko_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -110,7 +110,7 @@ const CURRICULUM = {
               "word": "さかな",
               "wordReading": "さかな",
               "meaningKo": "물고기",
-              "image": "images/realistic/sakana_realistic.png",
+              "image": "images/realistic/sakana_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -118,7 +118,7 @@ const CURRICULUM = {
               "word": "しまうま",
               "wordReading": "しまうま",
               "meaningKo": "얼룩말",
-              "image": "images/realistic/shimauma_realistic.png",
+              "image": "images/realistic/shimauma_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -126,7 +126,7 @@ const CURRICULUM = {
               "word": "すいか",
               "wordReading": "すいか",
               "meaningKo": "수박",
-              "image": "images/realistic/suika_realistic.png",
+              "image": "images/realistic/suika_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -134,7 +134,7 @@ const CURRICULUM = {
               "word": "せんせい",
               "wordReading": "せんせい",
               "meaningKo": "선생님",
-              "image": "images/realistic/sensei_realistic.png",
+              "image": "images/realistic/sensei_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -142,7 +142,7 @@ const CURRICULUM = {
               "word": "そら",
               "wordReading": "そら",
               "meaningKo": "하늘",
-              "image": "images/realistic/sora_realistic.png",
+              "image": "images/realistic/sora_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -157,7 +157,7 @@ const CURRICULUM = {
               "word": "たまご",
               "wordReading": "たまご",
               "meaningKo": "달걀",
-              "image": "images/realistic/tamago_realistic.png",
+              "image": "images/realistic/tamago_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -165,7 +165,7 @@ const CURRICULUM = {
               "word": "ちきゅう",
               "wordReading": "ちきゅう",
               "meaningKo": "지구",
-              "image": "images/realistic/chikyuu_realistic.png",
+              "image": "images/realistic/chikyuu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -173,7 +173,7 @@ const CURRICULUM = {
               "word": "つき",
               "wordReading": "つき",
               "meaningKo": "달",
-              "image": "images/realistic/tsuki_realistic.png",
+              "image": "images/realistic/tsuki_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -181,7 +181,7 @@ const CURRICULUM = {
               "word": "てんとうむし",
               "wordReading": "てんとうむし",
               "meaningKo": "무당벌레",
-              "image": "images/realistic/tentoumushi_realistic.png",
+              "image": "images/realistic/tentoumushi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -189,7 +189,7 @@ const CURRICULUM = {
               "word": "とけい",
               "wordReading": "とけい",
               "meaningKo": "시계",
-              "image": "images/realistic/tokei_realistic.png",
+              "image": "images/realistic/tokei_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -204,7 +204,7 @@ const CURRICULUM = {
               "word": "なす",
               "wordReading": "なす",
               "meaningKo": "가지",
-              "image": "images/realistic/nasu_realistic.png",
+              "image": "images/realistic/nasu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -212,7 +212,7 @@ const CURRICULUM = {
               "word": "にじ",
               "wordReading": "にじ",
               "meaningKo": "무지개",
-              "image": "images/realistic/niji_realistic.png",
+              "image": "images/realistic/niji_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -220,7 +220,7 @@ const CURRICULUM = {
               "word": "ぬいぐるみ",
               "wordReading": "ぬいぐるみ",
               "meaningKo": "인형",
-              "image": "images/realistic/nuigurumi_realistic.png",
+              "image": "images/realistic/nuigurumi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -228,7 +228,7 @@ const CURRICULUM = {
               "word": "ねこ",
               "wordReading": "ねこ",
               "meaningKo": "고양이",
-              "image": "images/realistic/neko_realistic.png",
+              "image": "images/realistic/neko_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -236,7 +236,7 @@ const CURRICULUM = {
               "word": "のり",
               "wordReading": "のり",
               "meaningKo": "김",
-              "image": "images/realistic/nori_realistic.png",
+              "image": "images/realistic/nori_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -251,7 +251,7 @@ const CURRICULUM = {
               "word": "はち",
               "wordReading": "はち",
               "meaningKo": "꿀벌",
-              "image": "images/realistic/hachi_realistic.png",
+              "image": "images/realistic/hachi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -259,7 +259,7 @@ const CURRICULUM = {
               "word": "ひこうき",
               "wordReading": "ひこうき",
               "meaningKo": "비행기",
-              "image": "images/realistic/hikouki_realistic.png",
+              "image": "images/realistic/hikouki_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -267,7 +267,7 @@ const CURRICULUM = {
               "word": "ふね",
               "wordReading": "ふね",
               "meaningKo": "배",
-              "image": "images/realistic/fune_realistic.png",
+              "image": "images/realistic/fune_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -275,7 +275,7 @@ const CURRICULUM = {
               "word": "へび",
               "wordReading": "へび",
               "meaningKo": "뱀",
-              "image": "images/realistic/hebi_realistic.png",
+              "image": "images/realistic/hebi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -283,7 +283,7 @@ const CURRICULUM = {
               "word": "ほし",
               "wordReading": "ほし",
               "meaningKo": "별",
-              "image": "images/realistic/hoshi_realistic.png",
+              "image": "images/realistic/hoshi_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -298,7 +298,7 @@ const CURRICULUM = {
               "word": "まど",
               "wordReading": "まど",
               "meaningKo": "창문",
-              "image": "images/realistic/mado_realistic.png",
+              "image": "images/realistic/mado_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -306,7 +306,7 @@ const CURRICULUM = {
               "word": "みかん",
               "wordReading": "みかん",
               "meaningKo": "귤",
-              "image": "images/realistic/mikan_realistic.png",
+              "image": "images/realistic/mikan_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -314,7 +314,7 @@ const CURRICULUM = {
               "word": "むし",
               "wordReading": "むし",
               "meaningKo": "벌레",
-              "image": "images/realistic/mushi_realistic.png",
+              "image": "images/realistic/mushi_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -322,7 +322,7 @@ const CURRICULUM = {
               "word": "めがね",
               "wordReading": "めがね",
               "meaningKo": "안경",
-              "image": "images/realistic/megane_realistic.png",
+              "image": "images/realistic/megane_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -330,7 +330,7 @@ const CURRICULUM = {
               "word": "もも",
               "wordReading": "もも",
               "meaningKo": "복숭아",
-              "image": "images/realistic/momo_realistic.png",
+              "image": "images/realistic/momo_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -345,7 +345,7 @@ const CURRICULUM = {
               "word": "らっぱ",
               "wordReading": "らっぱ",
               "meaningKo": "나팔",
-              "image": "images/realistic/rappa_realistic.png",
+              "image": "images/realistic/rappa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -353,7 +353,7 @@ const CURRICULUM = {
               "word": "りんご",
               "wordReading": "りんご",
               "meaningKo": "사과",
-              "image": "images/realistic/ringo_realistic.png",
+              "image": "images/realistic/ringo_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -361,7 +361,7 @@ const CURRICULUM = {
               "word": "さる",
               "wordReading": "さる",
               "meaningKo": "원숭이",
-              "image": "images/realistic/saru_realistic.png",
+              "image": "images/realistic/saru_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -369,7 +369,7 @@ const CURRICULUM = {
               "word": "れいぞうこ",
               "wordReading": "れいぞうこ",
               "meaningKo": "냉장고",
-              "image": "images/realistic/reizouko_realistic.png",
+              "image": "images/realistic/reizouko_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -377,7 +377,7 @@ const CURRICULUM = {
               "word": "ろうそく",
               "wordReading": "ろうそく",
               "meaningKo": "양초",
-              "image": "images/realistic/rousoku_realistic.png",
+              "image": "images/realistic/rousoku_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -392,7 +392,7 @@ const CURRICULUM = {
               "word": "やま",
               "wordReading": "やま",
               "meaningKo": "산",
-              "image": "images/realistic/yama_realistic.png",
+              "image": "images/realistic/yama_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -400,7 +400,7 @@ const CURRICULUM = {
               "word": "ゆき",
               "wordReading": "ゆき",
               "meaningKo": "눈",
-              "image": "images/realistic/yuki_realistic.png",
+              "image": "images/realistic/yuki_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -408,7 +408,7 @@ const CURRICULUM = {
               "word": "よる",
               "wordReading": "よる",
               "meaningKo": "밤",
-              "image": "images/realistic/yoru_realistic.png",
+              "image": "images/realistic/yoru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -416,7 +416,7 @@ const CURRICULUM = {
               "word": "わに",
               "wordReading": "わに",
               "meaningKo": "악어",
-              "image": "images/realistic/wani_realistic.png",
+              "image": "images/realistic/wani_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -424,7 +424,7 @@ const CURRICULUM = {
               "word": "ほん",
               "wordReading": "ほん",
               "meaningKo": "책",
-              "image": "images/realistic/hon_realistic.png",
+              "image": "images/realistic/hon_realistic.webp",
               "highlightIndex": 1
             }
           ]
@@ -439,7 +439,7 @@ const CURRICULUM = {
               "word": "がっこう",
               "wordReading": "がっこう",
               "meaningKo": "학교",
-              "image": "images/realistic/gakkou_realistic.png",
+              "image": "images/realistic/gakkou_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -447,7 +447,7 @@ const CURRICULUM = {
               "word": "かぎ",
               "wordReading": "かぎ",
               "meaningKo": "열쇠",
-              "image": "images/realistic/kagi_realistic.png",
+              "image": "images/realistic/kagi_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -455,7 +455,7 @@ const CURRICULUM = {
               "word": "もぐら",
               "wordReading": "もぐら",
               "meaningKo": "두더지",
-              "image": "images/realistic/mogura_realistic.png",
+              "image": "images/realistic/mogura_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -463,7 +463,7 @@ const CURRICULUM = {
               "word": "ひげ",
               "wordReading": "ひげ",
               "meaningKo": "수염",
-              "image": "images/realistic/hige_realistic.png",
+              "image": "images/realistic/hige_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -471,7 +471,7 @@ const CURRICULUM = {
               "word": "ごはん",
               "wordReading": "ごはん",
               "meaningKo": "밥",
-              "image": "images/realistic/gohan_realistic.png",
+              "image": "images/realistic/gohan_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -486,7 +486,7 @@ const CURRICULUM = {
               "word": "ざぶとん",
               "wordReading": "ざぶとん",
               "meaningKo": "방석",
-              "image": "images/realistic/zabuton_realistic.png",
+              "image": "images/realistic/zabuton_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -494,7 +494,7 @@ const CURRICULUM = {
               "word": "じてんしゃ",
               "wordReading": "じてんしゃ",
               "meaningKo": "자전거",
-              "image": "images/realistic/jitensha_realistic.png",
+              "image": "images/realistic/jitensha_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -502,7 +502,7 @@ const CURRICULUM = {
               "word": "ちず",
               "wordReading": "ちず",
               "meaningKo": "지도",
-              "image": "images/realistic/chizu_realistic.png",
+              "image": "images/realistic/chizu_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -510,7 +510,7 @@ const CURRICULUM = {
               "word": "かぜ",
               "wordReading": "かぜ",
               "meaningKo": "바람",
-              "image": "images/realistic/kaze_realistic.png",
+              "image": "images/realistic/kaze_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -518,7 +518,7 @@ const CURRICULUM = {
               "word": "ぞう",
               "wordReading": "ぞう",
               "meaningKo": "코끼리",
-              "image": "images/realistic/zou_realistic.png",
+              "image": "images/realistic/zou_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -533,7 +533,7 @@ const CURRICULUM = {
               "word": "だいこん",
               "wordReading": "だいこん",
               "meaningKo": "무",
-              "image": "images/realistic/daikon_realistic.png",
+              "image": "images/realistic/daikon_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -541,7 +541,7 @@ const CURRICULUM = {
               "word": "はなぢ",
               "wordReading": "はなぢ",
               "meaningKo": "코피",
-              "image": "images/realistic/hanaji_realistic.png",
+              "image": "images/realistic/hanaji_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -549,7 +549,7 @@ const CURRICULUM = {
               "word": "みかづき",
               "wordReading": "みかづき",
               "meaningKo": "초승달",
-              "image": "images/realistic/mikazuki_realistic.png",
+              "image": "images/realistic/mikazuki_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -557,7 +557,7 @@ const CURRICULUM = {
               "word": "でんわ",
               "wordReading": "でんわ",
               "meaningKo": "전화",
-              "image": "images/realistic/denwa_realistic.png",
+              "image": "images/realistic/denwa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -565,7 +565,7 @@ const CURRICULUM = {
               "word": "どんぐり",
               "wordReading": "どんぐり",
               "meaningKo": "도토리",
-              "image": "images/realistic/donguri_realistic.png",
+              "image": "images/realistic/donguri_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -580,7 +580,7 @@ const CURRICULUM = {
               "word": "ばら",
               "wordReading": "ばら",
               "meaningKo": "장미",
-              "image": "images/realistic/bara_realistic.png",
+              "image": "images/realistic/bara_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -588,7 +588,7 @@ const CURRICULUM = {
               "word": "はなび",
               "wordReading": "はなび",
               "meaningKo": "불꽃놀이",
-              "image": "images/realistic/hanabi_realistic.png",
+              "image": "images/realistic/hanabi_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -596,7 +596,7 @@ const CURRICULUM = {
               "word": "ぶた",
               "wordReading": "ぶた",
               "meaningKo": "돼지",
-              "image": "images/realistic/buta_realistic.png",
+              "image": "images/realistic/buta_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -604,7 +604,7 @@ const CURRICULUM = {
               "word": "なべ",
               "wordReading": "なべ",
               "meaningKo": "냄비",
-              "image": "images/realistic/nabe_realistic.png",
+              "image": "images/realistic/nabe_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -612,7 +612,7 @@ const CURRICULUM = {
               "word": "ぼうし",
               "wordReading": "ぼうし",
               "meaningKo": "모자",
-              "image": "images/realistic/boushi_realistic.png",
+              "image": "images/realistic/boushi_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -627,7 +627,7 @@ const CURRICULUM = {
               "word": "はっぱ",
               "wordReading": "はっぱ",
               "meaningKo": "나뭇잎",
-              "image": "images/realistic/happa_realistic.png",
+              "image": "images/realistic/happa_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -635,7 +635,7 @@ const CURRICULUM = {
               "word": "えんぴつ",
               "wordReading": "えんぴつ",
               "meaningKo": "연필",
-              "image": "images/realistic/enpitsu_realistic.png",
+              "image": "images/realistic/enpitsu_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -643,7 +643,7 @@ const CURRICULUM = {
               "word": "てんぷら",
               "wordReading": "てんぷら",
               "meaningKo": "튀김",
-              "image": "images/realistic/tenpura_realistic.png",
+              "image": "images/realistic/tenpura_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -651,7 +651,7 @@ const CURRICULUM = {
               "word": "ほっぺた",
               "wordReading": "ほっぺた",
               "meaningKo": "뺨",
-              "image": "images/realistic/hoppeta_realistic.png",
+              "image": "images/realistic/hoppeta_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -659,7 +659,7 @@ const CURRICULUM = {
               "word": "たんぽぽ",
               "wordReading": "たんぽぽ",
               "meaningKo": "민들레",
-              "image": "images/realistic/tanpopo_realistic.png",
+              "image": "images/realistic/tanpopo_realistic.webp",
               "highlightIndex": 2
             }
           ]
@@ -681,7 +681,7 @@ const CURRICULUM = {
               "word": "アイス",
               "wordReading": "アイス",
               "meaningKo": "아이스크림",
-              "image": "images/realistic/aisu_realistic.png",
+              "image": "images/realistic/aisu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -689,7 +689,7 @@ const CURRICULUM = {
               "word": "インク",
               "wordReading": "インク",
               "meaningKo": "잉크",
-              "image": "images/realistic/inku_realistic.png",
+              "image": "images/realistic/inku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -697,7 +697,7 @@ const CURRICULUM = {
               "word": "ウクレレ",
               "wordReading": "ウクレレ",
               "meaningKo": "우쿨렐레",
-              "image": "images/realistic/ukurere_realistic.png",
+              "image": "images/realistic/ukurere_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -705,7 +705,7 @@ const CURRICULUM = {
               "word": "エプロン",
               "wordReading": "エプロン",
               "meaningKo": "앞치마",
-              "image": "images/realistic/epuron_realistic.png",
+              "image": "images/realistic/epuron_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -713,7 +713,7 @@ const CURRICULUM = {
               "word": "オレンジ",
               "wordReading": "オレンジ",
               "meaningKo": "오렌지",
-              "image": "images/realistic/orenji_realistic.png",
+              "image": "images/realistic/orenji_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -728,7 +728,7 @@ const CURRICULUM = {
               "word": "カメラ",
               "wordReading": "カメラ",
               "meaningKo": "카메라",
-              "image": "images/realistic/kamera_realistic.png",
+              "image": "images/realistic/kamera_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -736,7 +736,7 @@ const CURRICULUM = {
               "word": "キウイ",
               "wordReading": "キウイ",
               "meaningKo": "키위",
-              "image": "images/realistic/kiui_realistic.png",
+              "image": "images/realistic/kiui_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -744,7 +744,7 @@ const CURRICULUM = {
               "word": "クッキー",
               "wordReading": "クッキー",
               "meaningKo": "쿠키",
-              "image": "images/realistic/kukkii_realistic.png",
+              "image": "images/realistic/kukkii_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -752,7 +752,7 @@ const CURRICULUM = {
               "word": "ケーキ",
               "wordReading": "ケーキ",
               "meaningKo": "케이크",
-              "image": "images/realistic/keeki_realistic.png",
+              "image": "images/realistic/keeki_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -760,7 +760,7 @@ const CURRICULUM = {
               "word": "コップ",
               "wordReading": "コップ",
               "meaningKo": "컵",
-              "image": "images/realistic/koppu_realistic.png",
+              "image": "images/realistic/koppu_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -775,7 +775,7 @@ const CURRICULUM = {
               "word": "サラダ",
               "wordReading": "サラダ",
               "meaningKo": "샐러드",
-              "image": "images/realistic/sarada_realistic.png",
+              "image": "images/realistic/sarada_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -783,7 +783,7 @@ const CURRICULUM = {
               "word": "シャツ",
               "wordReading": "シャツ",
               "meaningKo": "셔츠",
-              "image": "images/realistic/shatsu_realistic.png",
+              "image": "images/realistic/shatsu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -791,7 +791,7 @@ const CURRICULUM = {
               "word": "スプーン",
               "wordReading": "スプーン",
               "meaningKo": "스푼",
-              "image": "images/realistic/supuun_realistic.png",
+              "image": "images/realistic/supuun_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -799,7 +799,7 @@ const CURRICULUM = {
               "word": "セーター",
               "wordReading": "セーター",
               "meaningKo": "스웨터",
-              "image": "images/realistic/seetaa_realistic.png",
+              "image": "images/realistic/seetaa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -807,7 +807,7 @@ const CURRICULUM = {
               "word": "ソーセージ",
               "wordReading": "ソーセージ",
               "meaningKo": "소시지",
-              "image": "images/realistic/sooseeji_realistic.png",
+              "image": "images/realistic/sooseeji_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -822,7 +822,7 @@ const CURRICULUM = {
               "word": "タオル",
               "wordReading": "タオル",
               "meaningKo": "수건",
-              "image": "images/realistic/taoru_realistic.png",
+              "image": "images/realistic/taoru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -830,7 +830,7 @@ const CURRICULUM = {
               "word": "チーズ",
               "wordReading": "チーズ",
               "meaningKo": "치즈",
-              "image": "images/realistic/chiizu_realistic.png",
+              "image": "images/realistic/chiizu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -838,7 +838,7 @@ const CURRICULUM = {
               "word": "ツリー",
               "wordReading": "ツリー",
               "meaningKo": "트리",
-              "image": "images/realistic/tsurii_realistic.png",
+              "image": "images/realistic/tsurii_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -846,7 +846,7 @@ const CURRICULUM = {
               "word": "テント",
               "wordReading": "テント",
               "meaningKo": "텐트",
-              "image": "images/realistic/tento_realistic.png",
+              "image": "images/realistic/tento_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -854,7 +854,7 @@ const CURRICULUM = {
               "word": "トマト",
               "wordReading": "トマト",
               "meaningKo": "토마토",
-              "image": "images/realistic/tomato_realistic.png",
+              "image": "images/realistic/tomato_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -869,7 +869,7 @@ const CURRICULUM = {
               "word": "ナイフ",
               "wordReading": "ナイフ",
               "meaningKo": "나이프",
-              "image": "images/realistic/naifu_realistic.png",
+              "image": "images/realistic/naifu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -877,7 +877,7 @@ const CURRICULUM = {
               "word": "ニット",
               "wordReading": "ニット",
               "meaningKo": "니트",
-              "image": "images/realistic/nitto_realistic.png",
+              "image": "images/realistic/nitto_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -885,7 +885,7 @@ const CURRICULUM = {
               "word": "ヌードル",
               "wordReading": "ヌードル",
               "meaningKo": "국수",
-              "image": "images/realistic/nuudoru_realistic.png",
+              "image": "images/realistic/nuudoru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -893,7 +893,7 @@ const CURRICULUM = {
               "word": "ネクタイ",
               "wordReading": "ネクタイ",
               "meaningKo": "넥타이",
-              "image": "images/realistic/nekutai_realistic.png",
+              "image": "images/realistic/nekutai_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -901,7 +901,7 @@ const CURRICULUM = {
               "word": "ノート",
               "wordReading": "ノート",
               "meaningKo": "공책",
-              "image": "images/realistic/nooto_realistic.png",
+              "image": "images/realistic/nooto_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -916,7 +916,7 @@ const CURRICULUM = {
               "word": "ハム",
               "wordReading": "ハム",
               "meaningKo": "햄",
-              "image": "images/realistic/hamu_realistic.png",
+              "image": "images/realistic/hamu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -924,7 +924,7 @@ const CURRICULUM = {
               "word": "ヒーター",
               "wordReading": "ヒーター",
               "meaningKo": "히터",
-              "image": "images/realistic/hiitaa_realistic.png",
+              "image": "images/realistic/hiitaa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -932,7 +932,7 @@ const CURRICULUM = {
               "word": "フォーク",
               "wordReading": "フォーク",
               "meaningKo": "포크",
-              "image": "images/realistic/fooku_realistic.png",
+              "image": "images/realistic/fooku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -940,7 +940,7 @@ const CURRICULUM = {
               "word": "ヘリコプター",
               "wordReading": "ヘリコプター",
               "meaningKo": "헬리콥터",
-              "image": "images/realistic/herikoputaa_realistic.png",
+              "image": "images/realistic/herikoputaa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -948,7 +948,7 @@ const CURRICULUM = {
               "word": "ホース",
               "wordReading": "ホース",
               "meaningKo": "호스",
-              "image": "images/realistic/hoosu_realistic.png",
+              "image": "images/realistic/hoosu_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -963,7 +963,7 @@ const CURRICULUM = {
               "word": "マイク",
               "wordReading": "マイク",
               "meaningKo": "마이크",
-              "image": "images/realistic/maiku_realistic.png",
+              "image": "images/realistic/maiku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -971,7 +971,7 @@ const CURRICULUM = {
               "word": "ミルク",
               "wordReading": "ミルク",
               "meaningKo": "우유",
-              "image": "images/realistic/miruku_realistic.png",
+              "image": "images/realistic/miruku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -979,7 +979,7 @@ const CURRICULUM = {
               "word": "ムース",
               "wordReading": "ムース",
               "meaningKo": "무스",
-              "image": "images/realistic/muusu_realistic.png",
+              "image": "images/realistic/muusu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -987,7 +987,7 @@ const CURRICULUM = {
               "word": "メロン",
               "wordReading": "メロン",
               "meaningKo": "멜론",
-              "image": "images/realistic/meron_realistic.png",
+              "image": "images/realistic/meron_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -995,7 +995,7 @@ const CURRICULUM = {
               "word": "モニター",
               "wordReading": "モニター",
               "meaningKo": "모니터",
-              "image": "images/realistic/monitaa_realistic.png",
+              "image": "images/realistic/monitaa_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1010,7 +1010,7 @@ const CURRICULUM = {
               "word": "ライオン",
               "wordReading": "ライオン",
               "meaningKo": "사자",
-              "image": "images/realistic/raion_realistic.png",
+              "image": "images/realistic/raion_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1018,7 +1018,7 @@ const CURRICULUM = {
               "word": "リボン",
               "wordReading": "リボン",
               "meaningKo": "리본",
-              "image": "images/realistic/ribon_realistic.png",
+              "image": "images/realistic/ribon_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1026,7 +1026,7 @@ const CURRICULUM = {
               "word": "ルビー",
               "wordReading": "ルビー",
               "meaningKo": "루비",
-              "image": "images/realistic/rubii_realistic.png",
+              "image": "images/realistic/rubii_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1034,7 +1034,7 @@ const CURRICULUM = {
               "word": "レモン",
               "wordReading": "レモン",
               "meaningKo": "레몬",
-              "image": "images/realistic/remon_realistic.png",
+              "image": "images/realistic/remon_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1042,7 +1042,7 @@ const CURRICULUM = {
               "word": "ロボット",
               "wordReading": "ロボット",
               "meaningKo": "로봇",
-              "image": "images/realistic/robotto_realistic.png",
+              "image": "images/realistic/robotto_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1057,7 +1057,7 @@ const CURRICULUM = {
               "word": "タイヤ",
               "wordReading": "タイヤ",
               "meaningKo": "타이어",
-              "image": "images/realistic/taiya_realistic.png",
+              "image": "images/realistic/taiya_realistic.webp",
               "highlightIndex": 2
             },
             {
@@ -1065,7 +1065,7 @@ const CURRICULUM = {
               "word": "ユニフォーム",
               "wordReading": "ユニフォーム",
               "meaningKo": "유니폼",
-              "image": "images/realistic/yunifoomu_realistic.png",
+              "image": "images/realistic/yunifoomu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1073,7 +1073,7 @@ const CURRICULUM = {
               "word": "ヨーヨー",
               "wordReading": "ヨーヨー",
               "meaningKo": "요요",
-              "image": "images/realistic/yooyoo_realistic.png",
+              "image": "images/realistic/yooyoo_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1081,7 +1081,7 @@ const CURRICULUM = {
               "word": "ワイン",
               "wordReading": "ワイン",
               "meaningKo": "와인",
-              "image": "images/realistic/wain_realistic.png",
+              "image": "images/realistic/wain_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1089,7 +1089,7 @@ const CURRICULUM = {
               "word": "パン",
               "wordReading": "パン",
               "meaningKo": "빵",
-              "image": "images/realistic/pan_realistic.png",
+              "image": "images/realistic/pan_realistic.webp",
               "highlightIndex": 1
             }
           ]
@@ -1104,7 +1104,7 @@ const CURRICULUM = {
               "word": "ガラス",
               "wordReading": "ガラス",
               "meaningKo": "유리",
-              "image": "images/realistic/garasu_realistic.png",
+              "image": "images/realistic/garasu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1112,7 +1112,7 @@ const CURRICULUM = {
               "word": "ギター",
               "wordReading": "ギター",
               "meaningKo": "기타",
-              "image": "images/realistic/gitaa_realistic.png",
+              "image": "images/realistic/gitaa_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1120,7 +1120,7 @@ const CURRICULUM = {
               "word": "グラス",
               "wordReading": "グラス",
               "meaningKo": "유리잔",
-              "image": "images/realistic/gurasu_realistic.png",
+              "image": "images/realistic/gurasu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1128,7 +1128,7 @@ const CURRICULUM = {
               "word": "ゲーム",
               "wordReading": "ゲーム",
               "meaningKo": "게임",
-              "image": "images/realistic/geemu_realistic.png",
+              "image": "images/realistic/geemu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1136,7 +1136,7 @@ const CURRICULUM = {
               "word": "ゴリラ",
               "wordReading": "ゴリラ",
               "meaningKo": "고릴라",
-              "image": "images/realistic/gorira_realistic.png",
+              "image": "images/realistic/gorira_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1151,7 +1151,7 @@ const CURRICULUM = {
               "word": "ピザ",
               "wordReading": "ピザ",
               "meaningKo": "피자",
-              "image": "images/realistic/piza_realistic.png",
+              "image": "images/realistic/piza_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -1159,7 +1159,7 @@ const CURRICULUM = {
               "word": "ラジオ",
               "wordReading": "ラジオ",
               "meaningKo": "라디오",
-              "image": "images/realistic/rajio_realistic.png",
+              "image": "images/realistic/rajio_realistic.webp",
               "highlightIndex": 1
             },
             {
@@ -1167,7 +1167,7 @@ const CURRICULUM = {
               "word": "ズボン",
               "wordReading": "ズボン",
               "meaningKo": "바지",
-              "image": "images/realistic/zubon_realistic.png",
+              "image": "images/realistic/zubon_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1175,7 +1175,7 @@ const CURRICULUM = {
               "word": "ゼリー",
               "wordReading": "ゼリー",
               "meaningKo": "젤리",
-              "image": "images/realistic/zerii_realistic.png",
+              "image": "images/realistic/zerii_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1183,7 +1183,7 @@ const CURRICULUM = {
               "word": "パズル",
               "wordReading": "パズル",
               "meaningKo": "퍼즐",
-              "image": "images/realistic/pazuru_realistic.png",
+              "image": "images/realistic/pazuru_realistic.webp",
               "highlightIndex": 1
             }
           ]
@@ -1198,7 +1198,7 @@ const CURRICULUM = {
               "word": "ダンス",
               "wordReading": "ダンス",
               "meaningKo": "춤",
-              "image": "images/realistic/dansu_realistic.png",
+              "image": "images/realistic/dansu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1206,7 +1206,7 @@ const CURRICULUM = {
               "word": "デスク",
               "wordReading": "デスク",
               "meaningKo": "책상",
-              "image": "images/realistic/desuku_realistic.png",
+              "image": "images/realistic/desuku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1214,7 +1214,7 @@ const CURRICULUM = {
               "word": "ドア",
               "wordReading": "ドア",
               "meaningKo": "문",
-              "image": "images/realistic/doa_realistic.png",
+              "image": "images/realistic/doa_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1229,7 +1229,7 @@ const CURRICULUM = {
               "word": "バス",
               "wordReading": "バス",
               "meaningKo": "버스",
-              "image": "images/realistic/basu_realistic.png",
+              "image": "images/realistic/basu_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1237,7 +1237,7 @@ const CURRICULUM = {
               "word": "ビル",
               "wordReading": "ビル",
               "meaningKo": "빌딩",
-              "image": "images/realistic/biru_realistic.png",
+              "image": "images/realistic/biru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1245,7 +1245,7 @@ const CURRICULUM = {
               "word": "ブロック",
               "wordReading": "ブロック",
               "meaningKo": "블록",
-              "image": "images/realistic/burokku_realistic.png",
+              "image": "images/realistic/burokku_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1253,7 +1253,7 @@ const CURRICULUM = {
               "word": "ベッド",
               "wordReading": "ベッド",
               "meaningKo": "침대",
-              "image": "images/realistic/beddo_realistic.png",
+              "image": "images/realistic/beddo_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1261,7 +1261,7 @@ const CURRICULUM = {
               "word": "ボタン",
               "wordReading": "ボタン",
               "meaningKo": "버튼",
-              "image": "images/realistic/botan_realistic.png",
+              "image": "images/realistic/botan_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1276,7 +1276,7 @@ const CURRICULUM = {
               "word": "パソコン",
               "wordReading": "パソコン",
               "meaningKo": "컴퓨터",
-              "image": "images/realistic/pasokon_realistic.png",
+              "image": "images/realistic/pasokon_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1284,7 +1284,7 @@ const CURRICULUM = {
               "word": "ピアノ",
               "wordReading": "ピアノ",
               "meaningKo": "피아노",
-              "image": "images/realistic/piano_realistic.png",
+              "image": "images/realistic/piano_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1292,7 +1292,7 @@ const CURRICULUM = {
               "word": "プール",
               "wordReading": "プール",
               "meaningKo": "수영장",
-              "image": "images/realistic/puuru_realistic.png",
+              "image": "images/realistic/puuru_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1300,7 +1300,7 @@ const CURRICULUM = {
               "word": "ペンギン",
               "wordReading": "ペンギン",
               "meaningKo": "펭귄",
-              "image": "images/realistic/pengin_realistic.png",
+              "image": "images/realistic/pengin_realistic.webp",
               "highlightIndex": 0
             },
             {
@@ -1308,7 +1308,7 @@ const CURRICULUM = {
               "word": "ポスト",
               "wordReading": "ポスト",
               "meaningKo": "우체통",
-              "image": "images/realistic/posuto_realistic.png",
+              "image": "images/realistic/posuto_realistic.webp",
               "highlightIndex": 0
             }
           ]
@@ -1359,7 +1359,7 @@ class FlashcardApp {
   }
   
   preloadImages() {
-    const images = ['images/joseph_anime.png'];
+    const images = ['images/joseph_anime.webp'];
     CURRICULUM.phases.forEach(phase => {
       phase.lessons.forEach(lesson => {
         lesson.cards.forEach(card => {
@@ -1460,7 +1460,7 @@ class FlashcardApp {
     let html = `
       <div class="home-view">
         <div class="header">
-          <img src="images/joseph_anime.png" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
+          <img src="images/joseph_anime.webp" class="mascot" alt="Joseph Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
           <h1 class="title">${CURRICULUM.appTitle}</h1>
         </div>
     `;
@@ -1541,7 +1541,7 @@ class FlashcardApp {
         <div class="flashcard-container" id="flashcard-container">
           <div class="flashcard ${this.isFlipped ? 'flipped' : ''} ${!this.hasFlippedOnce ? 'bounce' : ''}" id="flashcard">
             <div class="card-face card-front" style="background-color: ${bgColor};">
-              <img src="${card.image}" class="card-image" alt="illustration" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjgIxf44CMKTwvdGV4dD48L3N2Zz4='">
+              <img src="${card.image}" class="card-image" alt="illustration" loading="lazy" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjgIxf44CMKTwvdGV4dD48L3N2Zz4='">
               <div class="card-char">${card.character}</div>
             </div>
             <div class="card-face card-back">
