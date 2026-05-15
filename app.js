@@ -1,0 +1,365 @@
+const CURRICULUM = {
+  appTitle: "にほんご フラッシュカード",
+  phases: [
+    {
+      id: 1,
+      title: "히라가나 기본",
+      subtitle: "あ~な行",
+      type: "hiragana", 
+      lessons: [
+        {
+          id: 1,
+          title: "Lesson 1",
+          row: "あ行",
+          cards: [
+            { character: "あ", word: "あり", wordReading: "あり", meaningKo: "개미", image: "images/realistic/ari_realistic.png", highlightIndex: 0 },
+            { character: "い", word: "いぬ", wordReading: "いぬ", meaningKo: "강아지", image: "images/realistic/inu_realistic.png", highlightIndex: 0 },
+            { character: "う", word: "うさぎ", wordReading: "うさぎ", meaningKo: "토끼", image: "images/realistic/usagi_realistic.png", highlightIndex: 0 },
+            { character: "え", word: "えんぴつ", wordReading: "えんぴつ", meaningKo: "연필", image: "images/realistic/enpitsu_realistic.png", highlightIndex: 0 },
+            { character: "お", word: "おにぎり", wordReading: "おにぎり", meaningKo: "주먹밥", image: "images/realistic/onigiri_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 2,
+          title: "Lesson 2",
+          row: "か行",
+          cards: [
+            { character: "か", word: "かえる", wordReading: "かえる", meaningKo: "개구리", image: "images/realistic/kaeru_realistic.png", highlightIndex: 0 },
+            { character: "き", word: "きりん", wordReading: "きりん", meaningKo: "기린", image: "images/realistic/kirin_realistic.png", highlightIndex: 0 },
+            { character: "く", word: "くるま", wordReading: "くるま", meaningKo: "자동차", image: "images/realistic/kuruma_realistic.png", highlightIndex: 0 },
+            { character: "け", word: "けむし", wordReading: "けむし", meaningKo: "애벌레", image: "images/realistic/kemushi_realistic.png", highlightIndex: 0 },
+            { character: "こ", word: "こねこ", wordReading: "こねこ", meaningKo: "아기 고양이", image: "images/realistic/koneko_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 3,
+          title: "Lesson 3",
+          row: "さ行",
+          cards: [
+            { character: "さ", word: "さかな", wordReading: "さかな", meaningKo: "물고기", image: "images/realistic/sakana_realistic.png", highlightIndex: 0 },
+            { character: "し", word: "しまうま", wordReading: "しまうま", meaningKo: "얼룩말", image: "images/realistic/shimauma_realistic.png", highlightIndex: 0 },
+            { character: "す", word: "すいか", wordReading: "すいか", meaningKo: "수박", image: "images/realistic/suika_realistic.png", highlightIndex: 0 },
+            { character: "せ", word: "せんせい", wordReading: "せんせい", meaningKo: "선생님", image: "images/realistic/sensei_realistic.png", highlightIndex: 0 },
+            { character: "そ", word: "そら", wordReading: "そら", meaningKo: "하늘", image: "images/realistic/sora_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 4,
+          title: "Lesson 4",
+          row: "た行",
+          cards: [
+            { character: "た", word: "たまご", wordReading: "たまご", meaningKo: "달걀", image: "images/realistic/tamago_realistic.png", highlightIndex: 0 },
+            { character: "ち", word: "ちきゅう", wordReading: "ちきゅう", meaningKo: "지구", image: "images/realistic/chikyuu_realistic.png", highlightIndex: 0 },
+            { character: "つ", word: "つき", wordReading: "つき", meaningKo: "달", image: "images/realistic/tsuki_realistic.png", highlightIndex: 0 },
+            { character: "て", word: "てんとうむし", wordReading: "てんとうむし", meaningKo: "무당벌레", image: "images/realistic/tentoumushi_realistic.png", highlightIndex: 0 },
+            { character: "と", word: "とけい", wordReading: "とけい", meaningKo: "시계", image: "images/realistic/tokei_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 5,
+          title: "Lesson 5",
+          row: "な行",
+          cards: [
+            { character: "な", word: "なす", wordReading: "なす", meaningKo: "가지", image: "images/realistic/nasu_realistic.png", highlightIndex: 0 },
+            { character: "に", word: "にじ", wordReading: "にじ", meaningKo: "무지개", image: "images/realistic/niji_realistic.png", highlightIndex: 0 },
+            { character: "ぬ", word: "ぬいぐるみ", wordReading: "ぬいぐるみ", meaningKo: "인형", image: "images/realistic/nuigurumi_realistic.png", highlightIndex: 0 },
+            { character: "ね", word: "ねこ", wordReading: "ねこ", meaningKo: "고양이", image: "images/realistic/neko_realistic.png", highlightIndex: 0 },
+            { character: "の", word: "のり", wordReading: "のり", meaningKo: "김", image: "images/realistic/nori_realistic.png", highlightIndex: 0 }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+class FlashcardApp {
+  constructor() {
+    this.appEl = document.getElementById('app');
+    
+    try {
+      this.completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+      if (!Array.isArray(this.completedLessons)) this.completedLessons = [];
+    } catch (e) {
+      this.completedLessons = [];
+    }
+    
+    this.currentLesson = null;
+    this.currentCardIndex = 0;
+    this.isFlipped = false;
+    this.hasFlippedOnce = localStorage.getItem('hasFlippedOnce') === 'true';
+    
+    this.touchStartX = 0;
+    this.touchEndX = 0;
+    
+    window.addEventListener('hashchange', () => this.handleRoute());
+    window.addEventListener('keydown', (e) => this.handleKeydown(e));
+    
+    // Preload all images
+    this.preloadImages();
+    this.handleRoute();
+  }
+  
+  preloadImages() {
+    const images = ['images/mascot.png'];
+    CURRICULUM.phases.forEach(phase => {
+      phase.lessons.forEach(lesson => {
+        lesson.cards.forEach(card => {
+          images.push(card.image);
+        });
+      });
+    });
+    
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+  
+  handleRoute() {
+    const hash = window.location.hash || '#home';
+    if (hash === '#home') {
+      this.renderHome();
+    } else if (hash.startsWith('#lesson/')) {
+      const lessonId = parseInt(hash.split('/')[1]);
+      this.startLesson(lessonId);
+    }
+  }
+  
+  markLessonCompleted(lessonId) {
+    if (!this.completedLessons.includes(lessonId)) {
+      this.completedLessons.push(lessonId);
+      localStorage.setItem('completedLessons', JSON.stringify(this.completedLessons));
+    }
+  }
+  
+  findLesson(id) {
+    for (const phase of CURRICULUM.phases) {
+      const lesson = phase.lessons.find(l => l.id === id);
+      if (lesson) return { lesson, phase };
+    }
+    return null;
+  }
+  
+  renderHome() {
+    this.currentLesson = null;
+    let html = `
+      <div class="home-view">
+        <div class="header">
+          <img src="images/mascot.png" class="mascot" alt="Mascot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiNGRkI1QzIiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNDBweCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjg6vjgbwpPC90ZXh0Pjwvc3ZnPg=='">
+          <h1 class="title">${CURRICULUM.appTitle}</h1>
+        </div>
+    `;
+    
+    CURRICULUM.phases.forEach(phase => {
+      html += `
+        <div class="phase-section">
+          <h2 class="phase-title">Phase ${phase.id}: ${phase.title} <span style="color:#888;font-size:16px;">(${phase.subtitle})</span></h2>
+          <div class="lesson-grid">
+      `;
+      
+      phase.lessons.forEach(lesson => {
+        const isCompleted = this.completedLessons.includes(lesson.id);
+        html += `
+            <a href="#lesson/${lesson.id}" class="lesson-card">
+              ${isCompleted ? '<div class="completed-check">✓</div>' : ''}
+              <div class="lesson-row">${lesson.row}</div>
+              <div class="lesson-title">${lesson.title}</div>
+            </a>
+        `;
+      });
+      
+      html += `</div></div>`;
+    });
+    
+    html += `</div>`;
+    this.appEl.innerHTML = html;
+  }
+  
+  startLesson(lessonId) {
+    const found = this.findLesson(lessonId);
+    if (!found) {
+      window.location.hash = '#home';
+      return;
+    }
+    this.currentLesson = found.lesson;
+    this.currentPhase = found.phase;
+    this.currentCardIndex = 0;
+    this.isFlipped = false;
+    this.renderLesson();
+  }
+  
+  renderLesson() {
+    if (!this.currentLesson) return;
+    
+    const card = this.currentLesson.cards[this.currentCardIndex];
+    const totalCards = this.currentLesson.cards.length;
+    const isLastCard = this.currentCardIndex === totalCards - 1;
+    const bgColor = this.currentPhase.type === 'hiragana' ? 'var(--peach)' : 'var(--mint)';
+    
+    // Format highlighted word
+    let wordHtml = '';
+    for (let i = 0; i < card.wordReading.length; i++) {
+      if (i === card.highlightIndex) {
+        wordHtml += `<span class="highlight">${card.wordReading[i]}</span>`;
+      } else {
+        wordHtml += card.wordReading[i];
+      }
+    }
+    
+    let html = `
+      <div class="lesson-view">
+        <div class="top-bar">
+          <a href="#home" class="home-btn">🏠 홈</a>
+          <div class="lesson-title-display">${this.currentLesson.row}</div>
+        </div>
+        
+        <div class="thumbnail-bar">
+          ${this.currentLesson.cards.map((_, idx) => `
+            <div class="thumb-dot ${idx === this.currentCardIndex ? 'active' : ''}" data-idx="${idx}"></div>
+          `).join('')}
+        </div>
+        
+        <div class="flashcard-container" id="flashcard-container">
+          <div class="flashcard ${this.isFlipped ? 'flipped' : ''} ${!this.hasFlippedOnce ? 'bounce' : ''}" id="flashcard">
+            <div class="card-face card-front" style="background-color: ${bgColor};">
+              <img src="${card.image}" class="card-image" alt="illustration" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPijjgIxf44CMKTwvdGV4dD48L3N2Zz4='">
+              <div class="card-char">${card.character}</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="word-reading">${wordHtml}</div>
+              <div class="word-meaning">${card.meaningKo}</div>
+            </div>
+          </div>
+          ${!this.hasFlippedOnce ? '<div class="hint-text visible" id="hint-text">탭해서 뒤집어보세요!</div>' : ''}
+        </div>
+        
+        <div class="nav-bar" ${isLastCard && this.isFlipped ? 'style="display:none;"' : ''}>
+          <button class="nav-btn" id="prev-btn" ${this.currentCardIndex === 0 ? 'disabled' : ''}>◀</button>
+          <div class="nav-status">${this.currentCardIndex + 1} / ${totalCards}</div>
+          <button class="nav-btn" id="next-btn" ${isLastCard ? 'disabled' : ''}>▶</button>
+        </div>
+        
+        ${isLastCard ? `
+          <button class="done-btn" id="done-btn" style="display: ${this.isFlipped ? 'flex' : 'none'};">
+            ✨ 다 봤어요! ✨
+          </button>
+        ` : ''}
+      </div>
+    `;
+    
+    this.appEl.innerHTML = html;
+    this.attachLessonEvents();
+  }
+  
+  attachLessonEvents() {
+    const container = document.getElementById('flashcard-container');
+    const flashcard = document.getElementById('flashcard');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const doneBtn = document.getElementById('done-btn');
+    const thumbDots = document.querySelectorAll('.thumb-dot');
+    
+    container.addEventListener('click', () => {
+      this.isFlipped = !this.isFlipped;
+      flashcard.classList.toggle('flipped');
+      
+      if (!this.hasFlippedOnce) {
+        this.hasFlippedOnce = true;
+        localStorage.setItem('hasFlippedOnce', 'true');
+        flashcard.classList.remove('bounce');
+        const hint = document.getElementById('hint-text');
+        if (hint) hint.classList.remove('visible');
+      }
+      
+      // If last card and flipped, show done button, hide nav
+      const isLastCard = this.currentCardIndex === this.currentLesson.cards.length - 1;
+      if (isLastCard) {
+        const doneBtn = document.getElementById('done-btn');
+        const navBar = document.querySelector('.nav-bar');
+        if (doneBtn && navBar) {
+          if (this.isFlipped) {
+             doneBtn.style.display = 'flex';
+             navBar.style.display = 'none';
+          } else {
+             doneBtn.style.display = 'none';
+             navBar.style.display = 'flex';
+          }
+        }
+      }
+    });
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => this.navigateCard(-1));
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => this.navigateCard(1));
+    }
+    
+    if (doneBtn) {
+      doneBtn.addEventListener('click', () => {
+        this.markLessonCompleted(this.currentLesson.id);
+        window.location.hash = '#home';
+      });
+    }
+    
+    thumbDots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-idx'));
+        if (idx !== this.currentCardIndex) {
+          this.currentCardIndex = idx;
+          this.isFlipped = false;
+          this.renderLesson();
+        }
+      });
+    });
+    
+    // Swipe gestures
+    container.addEventListener('touchstart', e => {
+      this.touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    container.addEventListener('touchend', e => {
+      this.touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    }, {passive: true});
+  }
+  
+  handleSwipe() {
+    const diff = this.touchEndX - this.touchStartX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && this.currentCardIndex > 0) {
+        // Swipe right -> prev
+        this.navigateCard(-1);
+      } else if (diff < 0 && this.currentCardIndex < this.currentLesson.cards.length - 1) {
+        // Swipe left -> next
+        this.navigateCard(1);
+      }
+    }
+  }
+  
+  handleKeydown(e) {
+    if (!this.currentLesson) return;
+    if (e.key === 'ArrowLeft' && this.currentCardIndex > 0) {
+      this.navigateCard(-1);
+    } else if (e.key === 'ArrowRight' && this.currentCardIndex < this.currentLesson.cards.length - 1) {
+      this.navigateCard(1);
+    } else if (e.key === ' ' || e.key === 'Enter') {
+      const container = document.getElementById('flashcard-container');
+      if (container) container.click();
+    }
+  }
+  
+  navigateCard(dir) {
+    const newIdx = this.currentCardIndex + dir;
+    if (newIdx >= 0 && newIdx < this.currentLesson.cards.length) {
+      this.currentCardIndex = newIdx;
+      this.isFlipped = false;
+      this.renderLesson();
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.app = new FlashcardApp();
+});
