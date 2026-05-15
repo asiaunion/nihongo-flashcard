@@ -115,6 +115,16 @@ body {
   font-size: 36px;
   font-weight: 900;
   color: var(--pink);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.row-sub {
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 2px;
 }
 
 .lesson-title {

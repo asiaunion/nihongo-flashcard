@@ -413,10 +413,17 @@ class FlashcardApp {
       
       phase.lessons.forEach(lesson => {
         const isCompleted = this.completedLessons.includes(lesson.id);
+        let displayRow = lesson.row;
+        if (displayRow.endsWith('行')) {
+          displayRow = displayRow.slice(0, -1) + '<span class="row-sub">行</span>';
+        } else if (displayRow.endsWith(' 등')) {
+          displayRow = displayRow.slice(0, -2) + '<span class="row-sub"> 등</span>';
+        }
+        
         html += `
             <a href="#lesson/${lesson.id}" class="lesson-card">
               ${isCompleted ? '<div class="completed-check">✓</div>' : ''}
-              <div class="lesson-row">${lesson.row}</div>
+              <div class="lesson-row">${displayRow}</div>
               <div class="lesson-title">${lesson.title}</div>
             </a>
         `;
