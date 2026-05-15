@@ -2,9 +2,8 @@ const CURRICULUM = {
   appTitle: "にほんご フラッシュカード",
   phases: [
     {
-      id: 1,
-      title: "히라가나 기본",
-      subtitle: "あ~な行",
+      id: "hiragana",
+      title: "히라가나",
       type: "hiragana", 
       lessons: [
         {
@@ -66,15 +65,7 @@ const CURRICULUM = {
             { character: "ね", word: "ねこ", wordReading: "ねこ", meaningKo: "고양이", image: "images/realistic/neko_realistic.png", highlightIndex: 0 },
             { character: "の", word: "のり", wordReading: "のり", meaningKo: "김", image: "images/realistic/nori_realistic.png", highlightIndex: 0 }
           ]
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: "히라가나 심화",
-      subtitle: "は~ん, 탁음",
-      type: "hiragana",
-      lessons: [
+        },
         {
           id: 6,
           title: "Lesson 6",
@@ -138,9 +129,8 @@ const CURRICULUM = {
       ]
     },
     {
-      id: 3,
-      title: "가타카나 기본",
-      subtitle: "ア~ナ行",
+      id: "katakana",
+      title: "가타카나",
       type: "katakana",
       lessons: [
         {
@@ -202,15 +192,7 @@ const CURRICULUM = {
             { character: "ネ", word: "ネクタイ", wordReading: "ネクタイ", meaningKo: "넥타이", image: "images/realistic/nekutai_realistic.png", highlightIndex: 0 },
             { character: "ノ", word: "ノート", wordReading: "ノート", meaningKo: "공책", image: "images/realistic/nooto_realistic.png", highlightIndex: 0 }
           ]
-        }
-      ]
-    },
-    {
-      id: 4,
-      title: "가타카나 심화",
-      subtitle: "ハ~ン, 탁음",
-      type: "katakana",
-      lessons: [
+        },
         {
           id: 16,
           title: "Lesson 16",
@@ -425,7 +407,7 @@ class FlashcardApp {
     CURRICULUM.phases.forEach(phase => {
       html += `
         <div class="phase-section">
-          <h2 class="phase-title">Phase ${phase.id}: ${phase.title} <span style="color:#888;font-size:16px;">(${phase.subtitle})</span></h2>
+          <h2 class="phase-title">${phase.title}</h2>
           <div class="lesson-grid">
       `;
       
