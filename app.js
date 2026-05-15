@@ -1475,11 +1475,9 @@ class FlashcardApp {
       phase.lessons.forEach(lesson => {
         const isCompleted = this.completedLessons.includes(lesson.id);
         let displayRow = lesson.row;
-        if (displayRow.endsWith('行')) {
-          displayRow = displayRow.slice(0, -1) + '<span class="row-sub">行</span>';
-        } else if (displayRow.endsWith(' 등')) {
-          displayRow = displayRow.slice(0, -2) + '<span class="row-sub"> 등</span>';
-        }
+        // Clean up the text by removing anything after '行' and wrapping '行' in a smaller span.
+        // This drops '(탁음)' and '(반탁음)' which cause text overflow in the UI grid.
+        displayRow = displayRow.replace(/行.*/, '<span class="row-sub">行</span>');
         
         html += `
             <a href="#lesson/${lesson.id}" class="lesson-card">
