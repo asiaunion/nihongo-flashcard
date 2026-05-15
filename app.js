@@ -71,13 +71,81 @@ const CURRICULUM = {
     },
     {
       id: 2,
+      title: "히라가나 심화",
+      subtitle: "は~ん, 탁음",
+      type: "hiragana",
+      lessons: [
+        {
+          id: 6,
+          title: "Lesson 6",
+          row: "は行",
+          cards: [
+            { character: "は", word: "はち", wordReading: "はち", meaningKo: "꿀벌", image: "images/realistic/hachi_realistic.png", highlightIndex: 0 },
+            { character: "ひ", word: "ひこうき", wordReading: "ひこうき", meaningKo: "비행기", image: "images/realistic/hikouki_realistic.png", highlightIndex: 0 },
+            { character: "ふ", word: "ふね", wordReading: "ふね", meaningKo: "배", image: "images/realistic/fune_realistic.png", highlightIndex: 0 },
+            { character: "へ", word: "へび", wordReading: "へび", meaningKo: "뱀", image: "images/realistic/hebi_realistic.png", highlightIndex: 0 },
+            { character: "ほ", word: "ほし", wordReading: "ほし", meaningKo: "별", image: "images/realistic/hoshi_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 7,
+          title: "Lesson 7",
+          row: "ま行",
+          cards: [
+            { character: "ま", word: "まど", wordReading: "まど", meaningKo: "창문", image: "images/realistic/mado_realistic.png", highlightIndex: 0 },
+            { character: "み", word: "みかん", wordReading: "みかん", meaningKo: "귤", image: "images/realistic/mikan_realistic.png", highlightIndex: 0 },
+            { character: "む", word: "むし", wordReading: "むし", meaningKo: "벌레", image: "images/realistic/mushi_realistic.png", highlightIndex: 0 },
+            { character: "め", word: "めがね", wordReading: "めがね", meaningKo: "안경", image: "images/realistic/megane_realistic.png", highlightIndex: 0 },
+            { character: "も", word: "もも", wordReading: "もも", meaningKo: "복숭아", image: "images/realistic/momo_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 8,
+          title: "Lesson 8",
+          row: "ら行",
+          cards: [
+            { character: "ら", word: "らっぱ", wordReading: "らっぱ", meaningKo: "나팔", image: "images/realistic/rappa_realistic.png", highlightIndex: 0 },
+            { character: "り", word: "りんご", wordReading: "りんご", meaningKo: "사과", image: "images/realistic/ringo_realistic.png", highlightIndex: 0 },
+            { character: "る", word: "さる", wordReading: "さる", meaningKo: "원숭이", image: "images/realistic/saru_realistic.png", highlightIndex: 1 },
+            { character: "れ", word: "れいぞうこ", wordReading: "れいぞうこ", meaningKo: "냉장고", image: "images/realistic/reizouko_realistic.png", highlightIndex: 0 },
+            { character: "ろ", word: "ろうそく", wordReading: "ろうそく", meaningKo: "양초", image: "images/realistic/rousoku_realistic.png", highlightIndex: 0 }
+          ]
+        },
+        {
+          id: 9,
+          title: "Lesson 9",
+          row: "や・わ行",
+          cards: [
+            { character: "や", word: "やま", wordReading: "やま", meaningKo: "산", image: "images/realistic/yama_realistic.png", highlightIndex: 0 },
+            { character: "ゆ", word: "ゆき", wordReading: "ゆき", meaningKo: "눈", image: "images/realistic/yuki_realistic.png", highlightIndex: 0 },
+            { character: "よ", word: "よる", wordReading: "よる", meaningKo: "밤", image: "images/realistic/yoru_realistic.png", highlightIndex: 0 },
+            { character: "わ", word: "わに", wordReading: "わに", meaningKo: "악어", image: "images/realistic/wani_realistic.png", highlightIndex: 0 },
+            { character: "ん", word: "ほん", wordReading: "ほん", meaningKo: "책", image: "images/realistic/hon_realistic.png", highlightIndex: 1 }
+          ]
+        },
+        {
+          id: 10,
+          title: "Lesson 10",
+          row: "탁음 등",
+          cards: [
+            { character: "が", word: "がっこう", wordReading: "がっこう", meaningKo: "학교", image: "images/realistic/gakkou_realistic.png", highlightIndex: 0 },
+            { character: "ぞ", word: "ぞう", wordReading: "ぞう", meaningKo: "코끼리", image: "images/realistic/zou_realistic.png", highlightIndex: 0 },
+            { character: "ど", word: "どんぐり", wordReading: "どんぐり", meaningKo: "도토리", image: "images/realistic/donguri_realistic.png", highlightIndex: 0 },
+            { character: "ぶ", word: "ぶた", wordReading: "ぶた", meaningKo: "돼지", image: "images/realistic/buta_realistic.png", highlightIndex: 0 },
+            { character: "ぼ", word: "ぼうし", wordReading: "ぼうし", meaningKo: "모자", image: "images/realistic/boushi_realistic.png", highlightIndex: 0 }
+          ]
+        }
+      ]
+    },
+    {
+      id: 3,
       title: "가타카나 기본",
       subtitle: "ア~ナ行",
       type: "katakana",
       lessons: [
         {
-          id: 6,
-          title: "Lesson 6",
+          id: 11,
+          title: "Lesson 11",
           row: "ア行",
           cards: [
             { character: "ア", word: "アイス", wordReading: "アイス", meaningKo: "아이스크림", image: "images/realistic/aisu_realistic.png", highlightIndex: 0 },
@@ -88,8 +156,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 7,
-          title: "Lesson 7",
+          id: 12,
+          title: "Lesson 12",
           row: "カ行",
           cards: [
             { character: "カ", word: "カメラ", wordReading: "カメラ", meaningKo: "카메라", image: "images/realistic/kamera_realistic.png", highlightIndex: 0 },
@@ -100,8 +168,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 8,
-          title: "Lesson 8",
+          id: 13,
+          title: "Lesson 13",
           row: "サ行",
           cards: [
             { character: "サ", word: "サラダ", wordReading: "サラダ", meaningKo: "샐러드", image: "images/realistic/sarada_realistic.png", highlightIndex: 0 },
@@ -112,8 +180,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 9,
-          title: "Lesson 9",
+          id: 14,
+          title: "Lesson 14",
           row: "タ行",
           cards: [
             { character: "タ", word: "タオル", wordReading: "タオル", meaningKo: "수건", image: "images/realistic/taoru_realistic.png", highlightIndex: 0 },
@@ -124,8 +192,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 10,
-          title: "Lesson 10",
+          id: 15,
+          title: "Lesson 15",
           row: "ナ行",
           cards: [
             { character: "ナ", word: "ナイフ", wordReading: "ナイフ", meaningKo: "나이프", image: "images/realistic/naifu_realistic.png", highlightIndex: 0 },
@@ -138,14 +206,14 @@ const CURRICULUM = {
       ]
     },
     {
-      id: 3,
+      id: 4,
       title: "가타카나 심화",
       subtitle: "ハ~ン, 탁음",
       type: "katakana",
       lessons: [
         {
-          id: 11,
-          title: "Lesson 11",
+          id: 16,
+          title: "Lesson 16",
           row: "ハ行",
           cards: [
             { character: "ハ", word: "ハム", wordReading: "ハム", meaningKo: "햄", image: "images/realistic/hamu_realistic.png", highlightIndex: 0 },
@@ -156,8 +224,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 12,
-          title: "Lesson 12",
+          id: 17,
+          title: "Lesson 17",
           row: "マ行",
           cards: [
             { character: "マ", word: "マイク", wordReading: "マイク", meaningKo: "마이크", image: "images/realistic/maiku_realistic.png", highlightIndex: 0 },
@@ -168,20 +236,8 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 13,
-          title: "Lesson 13",
-          row: "ヤ・ワ行",
-          cards: [
-            { character: "ヤ", word: "タイヤ", wordReading: "タイヤ", meaningKo: "타이어", image: "images/realistic/taiya_realistic.png", highlightIndex: 2 },
-            { character: "ユ", word: "ユニフォーム", wordReading: "ユニフォーム", meaningKo: "유니폼", image: "images/realistic/yunifoomu_realistic.png", highlightIndex: 0 },
-            { character: "ヨ", word: "ヨーヨー", wordReading: "ヨーヨー", meaningKo: "요요", image: "images/realistic/yooyoo_realistic.png", highlightIndex: 0 },
-            { character: "ワ", word: "ワイン", wordReading: "ワイン", meaningKo: "와인", image: "images/realistic/wain_realistic.png", highlightIndex: 0 },
-            { character: "ン", word: "パン", wordReading: "パン", meaningKo: "빵", image: "images/realistic/pan_realistic.png", highlightIndex: 1 }
-          ]
-        },
-        {
-          id: 14,
-          title: "Lesson 14",
+          id: 18,
+          title: "Lesson 18",
           row: "ラ行",
           cards: [
             { character: "ラ", word: "ライオン", wordReading: "ライオン", meaningKo: "사자", image: "images/realistic/raion_realistic.png", highlightIndex: 0 },
@@ -192,71 +248,15 @@ const CURRICULUM = {
           ]
         },
         {
-          id: 15,
-          title: "Lesson 15",
-          row: "탁음 등",
-          cards: [
-            { character: "ガ", word: "ガラス", wordReading: "ガラス", meaningKo: "유리", image: "images/realistic/garasu_realistic.png", highlightIndex: 0 },
-            { character: "ピ", word: "ピアノ", wordReading: "ピアノ", meaningKo: "피아노", image: "images/realistic/piano_realistic.png", highlightIndex: 0 },
-            { character: "ブ", word: "ブロック", wordReading: "ブロック", meaningKo: "블록", image: "images/realistic/burokku_realistic.png", highlightIndex: 0 },
-            { character: "ペ", word: "ペンギン", wordReading: "ペンギン", meaningKo: "펭귄", image: "images/realistic/pengin_realistic.png", highlightIndex: 0 },
-            { character: "ポ", word: "ポスト", wordReading: "ポスト", meaningKo: "우체통", image: "images/realistic/posuto_realistic.png", highlightIndex: 0 }
-          ]
-        }
-      ]
-    },
-    {
-      id: 4,
-      title: "히라가나 심화",
-      subtitle: "は~ん, 탁음",
-      type: "hiragana",
-      lessons: [
-        {
-          id: 16,
-          title: "Lesson 16",
-          row: "は行",
-          cards: [
-            { character: "は", word: "はち", wordReading: "はち", meaningKo: "꿀벌", image: "images/realistic/hachi_realistic.png", highlightIndex: 0 },
-            { character: "ひ", word: "ひこうき", wordReading: "ひこうき", meaningKo: "비행기", image: "images/realistic/hikouki_realistic.png", highlightIndex: 0 },
-            { character: "ふ", word: "ふね", wordReading: "ふね", meaningKo: "배", image: "images/realistic/fune_realistic.png", highlightIndex: 0 },
-            { character: "へ", word: "へび", wordReading: "へび", meaningKo: "뱀", image: "images/realistic/hebi_realistic.png", highlightIndex: 0 },
-            { character: "ほ", word: "ほし", wordReading: "ほし", meaningKo: "별", image: "images/realistic/hoshi_realistic.png", highlightIndex: 0 }
-          ]
-        },
-        {
-          id: 17,
-          title: "Lesson 17",
-          row: "ま行",
-          cards: [
-            { character: "ま", word: "まど", wordReading: "まど", meaningKo: "창문", image: "images/realistic/mado_realistic.png", highlightIndex: 0 },
-            { character: "み", word: "みかん", wordReading: "みかん", meaningKo: "귤", image: "images/realistic/mikan_realistic.png", highlightIndex: 0 },
-            { character: "む", word: "むし", wordReading: "むし", meaningKo: "벌레", image: "images/realistic/mushi_realistic.png", highlightIndex: 0 },
-            { character: "め", word: "めがね", wordReading: "めがね", meaningKo: "안경", image: "images/realistic/megane_realistic.png", highlightIndex: 0 },
-            { character: "も", word: "もも", wordReading: "もも", meaningKo: "복숭아", image: "images/realistic/momo_realistic.png", highlightIndex: 0 }
-          ]
-        },
-        {
-          id: 18,
-          title: "Lesson 18",
-          row: "や・わ行",
-          cards: [
-            { character: "や", word: "やま", wordReading: "やま", meaningKo: "산", image: "images/realistic/yama_realistic.png", highlightIndex: 0 },
-            { character: "ゆ", word: "ゆき", wordReading: "ゆき", meaningKo: "눈", image: "images/realistic/yuki_realistic.png", highlightIndex: 0 },
-            { character: "よ", word: "よる", wordReading: "よる", meaningKo: "밤", image: "images/realistic/yoru_realistic.png", highlightIndex: 0 },
-            { character: "わ", word: "わに", wordReading: "わに", meaningKo: "악어", image: "images/realistic/wani_realistic.png", highlightIndex: 0 },
-            { character: "ん", word: "ほん", wordReading: "ほん", meaningKo: "책", image: "images/realistic/hon_realistic.png", highlightIndex: 1 }
-          ]
-        },
-        {
           id: 19,
           title: "Lesson 19",
-          row: "ら行",
+          row: "ヤ・ワ行",
           cards: [
-            { character: "ら", word: "らっぱ", wordReading: "らっぱ", meaningKo: "나팔", image: "images/realistic/rappa_realistic.png", highlightIndex: 0 },
-            { character: "り", word: "りんご", wordReading: "りんご", meaningKo: "사과", image: "images/realistic/ringo_realistic.png", highlightIndex: 0 },
-            { character: "る", word: "さる", wordReading: "さる", meaningKo: "원숭이", image: "images/realistic/saru_realistic.png", highlightIndex: 1 },
-            { character: "れ", word: "れいぞうこ", wordReading: "れいぞうこ", meaningKo: "냉장고", image: "images/realistic/reizouko_realistic.png", highlightIndex: 0 },
-            { character: "ろ", word: "ろうそく", wordReading: "ろうそく", meaningKo: "양초", image: "images/realistic/rousoku_realistic.png", highlightIndex: 0 }
+            { character: "ヤ", word: "タイヤ", wordReading: "タイヤ", meaningKo: "타이어", image: "images/realistic/taiya_realistic.png", highlightIndex: 2 },
+            { character: "ユ", word: "ユニフォーム", wordReading: "ユニフォーム", meaningKo: "유니폼", image: "images/realistic/yunifoomu_realistic.png", highlightIndex: 0 },
+            { character: "ヨ", word: "ヨーヨー", wordReading: "ヨーヨー", meaningKo: "요요", image: "images/realistic/yooyoo_realistic.png", highlightIndex: 0 },
+            { character: "ワ", word: "ワイン", wordReading: "ワイン", meaningKo: "와인", image: "images/realistic/wain_realistic.png", highlightIndex: 0 },
+            { character: "ン", word: "パン", wordReading: "パン", meaningKo: "빵", image: "images/realistic/pan_realistic.png", highlightIndex: 1 }
           ]
         },
         {
@@ -264,11 +264,11 @@ const CURRICULUM = {
           title: "Lesson 20",
           row: "탁음 등",
           cards: [
-            { character: "が", word: "がっこう", wordReading: "がっこう", meaningKo: "학교", image: "images/realistic/gakkou_realistic.png", highlightIndex: 0 },
-            { character: "ぞ", word: "ぞう", wordReading: "ぞう", meaningKo: "코끼리", image: "images/realistic/zou_realistic.png", highlightIndex: 0 },
-            { character: "ど", word: "どんぐり", wordReading: "どんぐり", meaningKo: "도토리", image: "images/realistic/donguri_realistic.png", highlightIndex: 0 },
-            { character: "ぶ", word: "ぶた", wordReading: "ぶた", meaningKo: "돼지", image: "images/realistic/buta_realistic.png", highlightIndex: 0 },
-            { character: "ぼ", word: "ぼうし", wordReading: "ぼうし", meaningKo: "모자", image: "images/realistic/boushi_realistic.png", highlightIndex: 0 }
+            { character: "ガ", word: "ガラス", wordReading: "ガラス", meaningKo: "유리", image: "images/realistic/garasu_realistic.png", highlightIndex: 0 },
+            { character: "ピ", word: "ピアノ", wordReading: "ピアノ", meaningKo: "피아노", image: "images/realistic/piano_realistic.png", highlightIndex: 0 },
+            { character: "ブ", word: "ブロック", wordReading: "ブロック", meaningKo: "블록", image: "images/realistic/burokku_realistic.png", highlightIndex: 0 },
+            { character: "ペ", word: "ペンギン", wordReading: "ペンギン", meaningKo: "펭귄", image: "images/realistic/pengin_realistic.png", highlightIndex: 0 },
+            { character: "ポ", word: "ポスト", wordReading: "ポスト", meaningKo: "우체통", image: "images/realistic/posuto_realistic.png", highlightIndex: 0 }
           ]
         }
       ]
