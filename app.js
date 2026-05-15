@@ -327,8 +327,8 @@ class FlashcardApp {
     // 3. Tuning for natural feel: 
     // Detect iOS/iPadOS as WebKit plays speech much faster than macOS/Chrome
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    utterance.rate = isIOS ? 0.65 : 0.95;
-    utterance.pitch = 1.05;
+    utterance.rate = isIOS ? 0.6 : 0.95;
+    utterance.pitch = isIOS ? 1.0 : 1.05;
     utterance.volume = 1.0;
 
     // 4. Advanced Voice Selection Logic
